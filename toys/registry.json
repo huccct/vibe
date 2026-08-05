@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "chladni",
+    "title": "chladni",
+    "description": "驻波方程解出来的节线。一万两千颗沙子自己找到不振动的地方待着。",
+    "tags": [
+      "canvas",
+      "物理",
+      "数学"
+    ],
+    "accent": "#7cf6ff",
+    "added": "2026-08-05"
+  },
+  {
+    "slug": "flow-field",
+    "title": "flow field",
+    "description": "几千个粒子跟着噪声场漂，拖尾积成流线。鼠标能把它们推开。",
+    "tags": [
+      "canvas",
+      "生成艺术",
+      "noise"
+    ],
+    "accent": "#9dff3c",
+    "added": "2026-08-05"
+  },
+  {
+    "slug": "pixel-sort",
+    "title": "pixel sort",
+    "description": "把像素按亮度排成拉丝故障感。能拖自己的图进去，能下载。",
+    "tags": [
+      "canvas",
+      "图像",
+      "glitch"
+    ],
+    "accent": "#ff5ea8",
+    "added": "2026-08-05"
+  }
+]

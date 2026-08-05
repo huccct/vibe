@@ -1,0 +1,7 @@
+{
+  "title": "pixel sort",
+  "description": "把像素按亮度排成拉丝故障感。能拖自己的图进去，能下载。",
+  "tags": ["canvas", "图像", "glitch"],
+  "accent": "#ff5ea8",
+  "added": "2026-08-05"
+}

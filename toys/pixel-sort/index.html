@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pixel sort — vibe</title>
+    <link rel="stylesheet" href="../../src/shared/vibe.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="toy-shell">
+      <div class="toy-bar">
+        <a class="back" href="../../">← vibe</a>
+        <h1>pixel sort</h1>
+
+        <label class="ctrl">
+          阈值
+          <input id="threshold" type="range" min="0" max="100" step="1" value="35" />
+          <output id="thresholdOut">35</output>
+        </label>
+
+        <label class="ctrl">
+          <select id="direction">
+            <option value="row">横向</option>
+            <option value="col">纵向</option>
+          </select>
+        </label>
+
+        <label class="ctrl">
+          <select id="key">
+            <option value="lum">按亮度</option>
+            <option value="hue">按色相</option>
+            <option value="r">按红</option>
+            <option value="b">按蓝</option>
+          </select>
+        </label>
+
+        <label class="file-btn">
+          换张图
+          <input id="file" type="file" accept="image/*" />
+        </label>
+
+        <button id="save">下载 PNG</button>
+        <span class="hint">也可以直接把图拖进来</span>
+      </div>
+
+      <div class="toy-stage" id="stage">
+        <div class="drop-hint" id="dropHint">松手</div>
+      </div>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

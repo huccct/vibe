@@ -1,0 +1,7 @@
+{
+  "title": "flow field",
+  "description": "几千个粒子跟着噪声场漂，拖尾积成流线。鼠标能把它们推开。",
+  "tags": ["canvas", "生成艺术", "noise"],
+  "accent": "#9dff3c",
+  "added": "2026-08-05"
+}

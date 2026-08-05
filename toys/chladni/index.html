@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chladni — vibe</title>
+    <link rel="stylesheet" href="../../src/shared/vibe.css" />
+  </head>
+  <body>
+    <div class="toy-shell">
+      <div class="toy-bar">
+        <a class="back" href="../../">← vibe</a>
+        <h1>chladni</h1>
+
+        <label class="ctrl">
+          m
+          <input id="m" type="range" min="1" max="12" step="1" value="3" />
+          <output id="mOut">3</output>
+        </label>
+
+        <label class="ctrl">
+          n
+          <input id="n" type="range" min="1" max="12" step="1" value="5" />
+          <output id="nOut">5</output>
+        </label>
+
+        <label class="ctrl">
+          振幅
+          <input id="amp" type="range" min="1" max="20" step="1" value="8" />
+          <output id="ampOut">8</output>
+        </label>
+
+        <button id="shake">重新撒沙</button>
+        <span class="hint">沙子聚到不振动的地方</span>
+      </div>
+
+      <div class="toy-stage" id="stage"></div>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
