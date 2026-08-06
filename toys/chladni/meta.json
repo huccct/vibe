@@ -1,7 +1,14 @@
 {
-  "title": "chladni",
-  "description": "驻波方程解出来的节线。一万两千颗沙子自己找到不振动的地方待着。",
-  "tags": ["canvas", "物理", "数学"],
   "accent": "#7cf6ff",
-  "added": "2026-08-05"
+  "added": "2026-08-05",
+  "zh": {
+    "title": "chladni",
+    "description": "驻波方程解出来的节线。一万两千颗沙子自己找到不振动的地方待着。",
+    "tags": ["物理", "数学"]
+  },
+  "en": {
+    "title": "chladni",
+    "description": "Nodal lines solved out of the standing wave equation. Twelve thousand grains of sand find the spots that don't vibrate and settle there.",
+    "tags": ["physics", "math"]
+  }
 }

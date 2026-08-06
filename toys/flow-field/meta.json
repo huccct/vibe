@@ -1,7 +1,14 @@
 {
-  "title": "flow field",
-  "description": "几千个粒子跟着噪声场漂，拖尾积成流线。鼠标能把它们推开。",
-  "tags": ["canvas", "生成艺术", "noise"],
   "accent": "#9dff3c",
-  "added": "2026-08-05"
+  "added": "2026-08-05",
+  "zh": {
+    "title": "flow field",
+    "description": "几千个粒子跟着噪声场漂，拖尾积成流线。鼠标能把它们推开。",
+    "tags": ["生成艺术", "noise"]
+  },
+  "en": {
+    "title": "flow field",
+    "description": "A few thousand particles drift along a noise field, trails piling up into streamlines. Your cursor pushes them around.",
+    "tags": ["generative", "noise"]
+  }
 }

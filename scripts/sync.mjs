@@ -9,7 +9,9 @@ import { fileURLToPath } from 'node:url'
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const toysDir = join(root, 'toys')
 
-const REQUIRED = ['title', 'description', 'tags', 'accent', 'added']
+const LANGS = ['zh', 'en']
+const SHARED = ['accent', 'added']
+const PER_LANG = ['title', 'description', 'tags']
 
 const entries = await readdir(toysDir, { withFileTypes: true })
 const toys = []
@@ -26,7 +28,16 @@ for (const entry of entries) {
     throw new Error(`toys/${entry.name}/meta.json 解析失败：${err.message}`)
   }
 
-  const missing = REQUIRED.filter((k) => meta[k] === undefined)
+  // 语言无关的字段在顶层，文案按语言分块 —— 少一种语言就报错，
+  // 否则画廊切过去会是一片 undefined
+  const missing = SHARED.filter((k) => meta[k] === undefined)
+  for (const lang of LANGS) {
+    if (!meta[lang]) {
+      missing.push(lang)
+      continue
+    }
+    missing.push(...PER_LANG.filter((k) => meta[lang][k] === undefined).map((k) => `${lang}.${k}`))
+  }
   if (missing.length) throw new Error(`toys/${entry.name}/meta.json 缺字段：${missing.join(', ')}`)
 
   toys.push({ slug: entry.name, ...meta })

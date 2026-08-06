@@ -1,0 +1,14 @@
+{
+  "accent": "#e8c36a",
+  "added": "2026-08-06",
+  "zh": {
+    "title": "重力书法",
+    "description": "写下的墨迹不肯待在纸上。松手后整笔坠落，重力和风说了算。",
+    "tags": ["书法", "物理"]
+  },
+  "en": {
+    "title": "Gravity Calligraphy",
+    "description": "Ink refuses to stay on the page. Release a stroke and let gravity and wind take over.",
+    "tags": ["calligraphy", "physics"]
+  }
+}

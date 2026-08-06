@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>三打白骨精 · 皮影戏</title>
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <a class="booth-back" href="../../">← vibe</a>
+
+    <main class="stage">
+      <div class="booth" aria-label="华县碗碗腔皮影戏台">
+        <div class="valance" aria-hidden="true"><span>灯影</span><i></i><span>碗腔</span></div>
+        <div class="frame">
+          <canvas id="screen" width="1120" height="480" aria-label="皮影戏影窗"></canvas>
+
+          <div class="curtain" id="curtain">
+            <p class="curtain-sub">华县碗碗腔 · 灯影戏</p>
+            <h1 class="curtain-title">猴王上场</h1>
+            <div class="curtain-body">
+              <p>灯一亮，锣鼓一响，签手便把一张牛皮送进戏里。</p>
+              <p>牵命签走位，等锣点接下一手；亮相、探身、举棒都由签手替你配合。<b>没有输赢，只管把它演活。</b></p>
+            </div>
+            <button id="start" class="btn btn-start">点灯开戏</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="hint" id="hint">灯未亮，影未生</div>
+
+      <div class="panel">
+        <button id="cue" class="btn cue-btn" disabled>接戏 · 亮相</button>
+        <button id="export" class="btn" disabled>收这一段</button>
+        <button id="mute" class="btn btn-icon" aria-label="静音">🔊</button>
+      </div>
+
+      <p class="credit">
+        仿华县碗碗腔影窗 · 一盏灯，一张牛皮，五人一台忙
+      </p>
+    </main>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>

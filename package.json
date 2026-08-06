@@ -4,7 +4,7 @@
   "type": "module",
   "description": "一堆好玩的东西。零依赖，点开就能玩。",
   "scripts": {
-    "dev": "python3 -m http.server 4173",
+    "dev": "node scripts/serve.mjs 4173",
     "sync": "node scripts/sync.mjs",
     "new": "node scripts/new-toy.mjs",
     "banner": "node scripts/banner.mjs"

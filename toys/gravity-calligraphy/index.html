@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>重力书法 — vibe</title>
+    <link rel="stylesheet" href="../../src/shared/vibe.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="toy-shell">
+      <div class="toy-bar">
+        <a class="back" href="../../">← vibe</a>
+        <h1 id="title">重力书法</h1>
+
+        <label class="ctrl">
+          <span id="gravityLabel">重力</span>
+          <input id="gravity" type="range" min="0" max="1800" step="50" value="900" />
+        </label>
+
+        <label class="ctrl">
+          <span id="windLabel">风</span>
+          <input id="wind" type="range" min="-800" max="800" step="50" value="0" />
+        </label>
+
+        <button id="clear">清空</button>
+        <span class="hint" id="hint">在纸上写一笔，松手看它掉下来</span>
+        <span id="lang"></span>
+      </div>
+
+      <div class="paper" id="stage"></div>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

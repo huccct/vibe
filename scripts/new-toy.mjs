@@ -82,13 +82,22 @@ loop((dt, t) => {
 }
 
 function meta(slug, today) {
+  const name = slug.replace(/-/g, ' ')
+  // 语言无关的放顶层，文案按语言分块。两种语言都得填，缺一个 pnpm sync 会报错
   return `${JSON.stringify(
     {
-      title: slug.replace(/-/g, ' '),
-      description: 'TODO 一句话说清这是什么',
-      tags: ['canvas'],
       accent: '#9dff3c',
       added: today,
+      zh: {
+        title: name,
+        description: 'TODO 一句话说清这是什么',
+        tags: ['互动'],
+      },
+      en: {
+        title: name,
+        description: 'TODO one line on what this is',
+        tags: ['interactive'],
+      },
     },
     null,
     2

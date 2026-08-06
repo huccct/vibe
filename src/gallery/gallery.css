@@ -4,11 +4,21 @@
   padding: 64px 24px 48px;
 }
 
+.gallery-head {
+  position: relative; /* 语言按钮靠它定位 */
+}
+
 .gallery-head h1 {
   margin: 0;
   font-size: 40px;
   font-weight: 500;
   letter-spacing: -0.02em;
+}
+
+.gallery-lang {
+  position: absolute;
+  top: 4px;
+  right: 0;
 }
 
 .gallery-head h1::after {
@@ -51,6 +61,16 @@
   text-decoration: none;
 }
 
+.card.disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.card.disabled:hover {
+  border-color: var(--line);
+  transform: none;
+}
+
 /* 缩略图用 meta 里的 accent 生成渐变，省掉维护截图的麻烦 */
 .card-thumb {
   height: 108px;
@@ -69,9 +89,19 @@
 }
 
 .card-body h2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
   margin: 0;
   font-size: 14px;
   font-weight: 500;
+}
+
+.status {
+  color: var(--card-accent);
+  font-size: 10px;
+  font-weight: 400;
 }
 
 .card-body p {
