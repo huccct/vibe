@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "python3 -m http.server 4173",
     "sync": "node scripts/sync.mjs",
-    "new": "node scripts/new-toy.mjs"
+    "new": "node scripts/new-toy.mjs",
+    "banner": "node scripts/banner.mjs"
   }
 }
