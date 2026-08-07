@@ -1,0 +1,14 @@
+{
+  "accent": "#d56745",
+  "added": "2026-08-07",
+  "zh": {
+    "title": "山海异兽图鉴",
+    "description": "翻一页，遇见一只没有被古书记下的异兽。",
+    "tags": ["水墨", "异兽", "图鉴"]
+  },
+  "en": {
+    "title": "Mythical Beast Field Guide",
+    "description": "Turn a page and meet a beast no ancient book remembered.",
+    "tags": ["ink", "mythical beasts", "field guide"]
+  }
+}

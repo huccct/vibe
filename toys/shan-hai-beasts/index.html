@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../assets/logo.svg" type="image/svg+xml" />
+    <title>山海异兽图鉴 — vibe</title>
+    <link rel="stylesheet" href="../../src/shared/vibe.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="toy-shell">
+      <div class="toy-bar">
+        <a class="back" href="../../">← vibe</a>
+        <h1 id="title">山海异兽图鉴</h1>
+        <span class="hint" id="hint">翻一页，遇见一只异兽</span>
+        <span id="lang"></span>
+      </div>
+
+      <main class="book">
+        <article class="page" aria-live="polite">
+          <div class="beast" id="beast" role="img"></div>
+          <div class="entry">
+            <div class="folio" id="folio"></div>
+            <p class="eyebrow" id="eyebrow"></p>
+            <h2 id="name"></h2>
+            <div class="rule"></div>
+            <p class="habitat" id="habitat"></p>
+            <p class="lore" id="lore"></p>
+            <button id="next" type="button">翻一页</button>
+          </div>
+        </article>
+      </main>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

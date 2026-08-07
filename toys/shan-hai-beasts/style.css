@@ -1,0 +1,132 @@
+:root {
+  --accent: #d56745;
+  --paper: #eee4cd;
+  --ink: #28231d;
+}
+
+body {
+  background: #12110f;
+}
+
+.book {
+  display: grid;
+  flex: 1;
+  min-height: 0;
+  place-items: center;
+  padding: clamp(20px, 5vw, 64px);
+  background:
+    radial-gradient(circle at 50% 40%, rgba(213, 103, 69, 0.08), transparent 45%),
+    #12110f;
+}
+
+.page {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(280px, 1.1fr) minmax(260px, 0.9fr);
+  width: min(900px, 100%);
+  min-height: min(620px, 76vh);
+  overflow: hidden;
+  color: var(--ink);
+  background:
+    linear-gradient(90deg, transparent 49.8%, rgba(68, 49, 33, 0.12) 50%, transparent 50.2%),
+    var(--paper);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.48), inset 0 0 80px rgba(93, 58, 25, 0.1);
+}
+
+.page::after {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(91, 62, 38, 0.2);
+  pointer-events: none;
+}
+
+.beast {
+  min-height: 420px;
+  background: url('./beasts-atlas.png') no-repeat;
+  background-size: 300% 300%;
+  filter: saturate(0.92) contrast(1.04);
+}
+
+.entry {
+  align-self: center;
+  padding: 54px clamp(38px, 6vw, 72px) 54px 42px;
+}
+
+.folio,
+.eyebrow,
+.habitat {
+  color: #8b6448;
+  letter-spacing: 0.14em;
+}
+
+.folio {
+  position: absolute;
+  top: 30px;
+  right: 34px;
+  font-size: 11px;
+}
+
+.eyebrow {
+  margin: 0 0 22px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin: 0;
+  font-family: 'Songti SC', STSong, 'Noto Serif CJK SC', serif;
+  font-size: clamp(44px, 7vw, 76px);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+.rule {
+  width: 44px;
+  height: 3px;
+  margin: 30px 0;
+  background: var(--accent);
+}
+
+.habitat {
+  margin: 0 0 22px;
+  font-size: 12px;
+}
+
+.lore {
+  min-height: 6em;
+  margin: 0 0 38px;
+  font-family: 'Songti SC', STSong, Georgia, serif;
+  font-size: clamp(17px, 2vw, 21px);
+  line-height: 1.9;
+}
+
+#next {
+  border-color: rgba(71, 47, 30, 0.35);
+  color: var(--ink);
+  background: transparent;
+  padding: 9px 18px;
+}
+
+#next:hover {
+  border-color: var(--accent);
+  color: #9d422e;
+}
+
+@media (max-width: 680px) {
+  .toy-bar .hint { display: none; }
+
+  .book { padding: 14px; }
+
+  .page {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .beast { min-height: 44vh; }
+
+  .entry { padding: 32px 38px 42px; }
+
+  .lore { min-height: 4em; }
+}

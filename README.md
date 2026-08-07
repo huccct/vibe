@@ -14,6 +14,7 @@ My playground. Small toys you can just open and play with — no dependencies, n
 
 | | Toy | What it does |
 | --- | --- | --- |
+| 🐉 | [Mythical Beast Field Guide](toys/shan-hai-beasts/) | Turn a page and meet a beast no ancient book remembered |
 | 🖌️ | [Gravity Calligraphy](toys/gravity-calligraphy/) | Ink refuses to stay on the page. Release a stroke and let gravity and wind take over |
 | 🏮 | [Shadow Play](toys/shadow-play/) | A Huaxian wanwanqiang shadow puppet booth. Steer the rod, catch the gong beat, play out Monkey King's three fights with the bone demon. Records to GIF |
 | 🌊 | [flow field](toys/flow-field/) | A few thousand particles drift along a noise field, trails piling up into streamlines. Your cursor pushes them around |
