@@ -7,7 +7,24 @@
   --fg: #e6e8ee;
   --fg-dim: #8b90a0;
   --accent: #9dff3c;
+  --control-bg: #171b23;
+  --thumb-bg: #0c0e13;
+  --bg-rgb: 8 9 12;
   --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --bg: #f3f0e8;
+  --bg-soft: #fffdf8;
+  --line: #d8d1c4;
+  --fg: #26221d;
+  --fg-dim: #756d62;
+  --accent: #b84f35;
+  --control-bg: #ebe6dc;
+  --thumb-bg: #e7e1d5;
+  --bg-rgb: 243 240 232;
+  color-scheme: light;
 }
 
 * {
@@ -109,7 +126,7 @@ select,
 .file-btn {
   border: 1px solid var(--line);
   border-radius: 4px;
-  background: #171b23;
+  background: var(--control-bg);
   color: var(--fg);
   padding: 5px 10px;
   font-family: inherit;
@@ -131,6 +148,13 @@ select:hover,
 /* 语言切换。定宽是因为「中文」和「EN」字宽不同，不固定会让布局左右跳 */
 .lang-toggle {
   min-width: 46px;
+  color: var(--fg-dim);
+  text-align: center;
+}
+
+.theme-toggle {
+  width: 32px;
+  padding-inline: 0;
   color: var(--fg-dim);
   text-align: center;
 }

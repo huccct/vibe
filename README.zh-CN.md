@@ -6,7 +6,7 @@
   <a href="README.md">English</a> · <strong>简体中文</strong>
 </p>
 
-我的游乐场。写点好玩的小东西，零依赖、零构建，点开就能玩。
+我的游乐场。写点好玩的小东西，无需安装、零构建，点开就能玩。
 
 **→ [在线玩](https://huccct.github.io/vibe/)**
 
@@ -14,9 +14,9 @@
 
 | | 玩意儿 | 是什么 |
 | --- | --- | --- |
+| 🖨️ | [拓竹 A1 打印桌](toys/a1-printer/) | 一台细节丰富的 Three.js A1，看艺术样件逐层长出来 |
 | 🐉 | [山海异兽图鉴](toys/shan-hai-beasts/) | 翻一页，遇见一只没有被古书记下的异兽 |
 | 🖌️ | [重力书法](toys/gravity-calligraphy/) | 写下的墨迹不肯待在纸上。松手后整笔坠落，重力和风说了算 |
-| 🏮 | [皮影戏](toys/shadow-play/) | 华县碗碗腔皮影戏台。牵命签走位，等锣点接下一手，把《三打白骨精》演活。能收成 GIF |
 | 🌊 | [flow field](toys/flow-field/) | 几千个粒子跟着噪声场漂，拖尾积成流线。鼠标能推开它们 |
 | 🔉 | [chladni](toys/chladni/) | 驻波方程的节线。一万两千颗沙子自己找到不振动的地方待着 |
 | 🩸 | [pixel sort](toys/pixel-sort/) | 像素按亮度排成拉丝故障感。能拖自己的图进去，能下载 |
@@ -35,7 +35,7 @@ pnpm dev
 
 打开 http://localhost:4173 。
 
-没有 npm 依赖，也没有构建步骤 —— 全是原生 ES module，浏览器直接跑。`pnpm dev` 跑的是 [scripts/serve.mjs](scripts/serve.mjs)，五十行、只用 Node 自带模块的静态服务（ES module 不能从 `file://` 加载，所以得有个 server）。它发 `no-store`，这条比听起来重要：会回 `304` 的服务器会让浏览器继续用旧的 ES module 或 `registry.json`，最后你调的是一个「一半新一半旧」的页面。
+无需安装，也没有构建步骤 —— 浏览器直接跑原生 ES module，偶尔用到的库随项目一起放着。`pnpm dev` 跑的是 [scripts/serve.mjs](scripts/serve.mjs)，五十行、只用 Node 自带模块的静态服务（ES module 不能从 `file://` 加载，所以得有个 server）。它发 `no-store`，这条比听起来重要：会回 `304` 的服务器会让浏览器继续用旧的 ES module 或 `registry.json`，最后你调的是一个「一半新一半旧」的页面。
 
 ## 加一个新玩意儿
 

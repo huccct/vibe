@@ -28,6 +28,8 @@ for (const entry of entries) {
     throw new Error(`toys/${entry.name}/meta.json 解析失败：${err.message}`)
   }
 
+  if (meta.hidden) continue
+
   // 语言无关的字段在顶层，文案按语言分块 —— 少一种语言就报错，
   // 否则画廊切过去会是一片 undefined
   const missing = SHARED.filter((k) => meta[k] === undefined)

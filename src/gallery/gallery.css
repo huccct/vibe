@@ -23,10 +23,16 @@
   height: 34px;
 }
 
+:root[data-theme='light'] .gallery-head h1 img {
+  filter: brightness(0.22);
+}
+
 .gallery-lang {
   position: absolute;
   top: 4px;
   right: 0;
+  display: flex;
+  gap: 8px;
 }
 
 .gallery-head h1::after {
@@ -79,16 +85,13 @@
   transform: none;
 }
 
-/* 缩略图用 meta 里的 accent 生成渐变，省掉维护截图的麻烦 */
+/* 缩略图只做平面色块，不用光晕伪装内容。 */
 .card-thumb {
   height: 108px;
-  background: radial-gradient(
-      circle at 30% 20%,
-      color-mix(in srgb, var(--card-accent) 55%, transparent),
-      transparent 60%
-    ),
-    radial-gradient(circle at 75% 80%, color-mix(in srgb, var(--card-accent) 30%, transparent), transparent 55%),
-    #0c0e13;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--card-accent) 46%, var(--thumb-bg)) 0 38%, transparent 38%),
+    linear-gradient(315deg, color-mix(in srgb, var(--card-accent) 20%, var(--thumb-bg)) 0 28%, transparent 28%),
+    var(--thumb-bg);
   border-bottom: 1px solid var(--line);
 }
 

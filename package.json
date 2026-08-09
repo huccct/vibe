@@ -2,7 +2,7 @@
   "name": "vibe",
   "private": true,
   "type": "module",
-  "description": "一堆好玩的东西。零依赖，点开就能玩。",
+  "description": "一堆好玩的东西。无需安装，点开就能玩。",
   "scripts": {
     "dev": "node scripts/serve.mjs 4173",
     "sync": "node scripts/sync.mjs",

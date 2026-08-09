@@ -1,0 +1,14 @@
+{
+  "accent": "#86d9ce",
+  "added": "2026-08-09",
+  "zh": {
+    "title": "拓竹 A1 打印桌",
+    "description": "一台会认真工作的 Three.js A1 非官方习作。转动视角，看波纹花器逐层长出来。",
+    "tags": ["3D打印", "机械", "Three.js"]
+  },
+  "en": {
+    "title": "Bambu Lab A1 Print Desk",
+    "description": "An unofficial Three.js A1 study at work. Orbit around it as a ripple vase grows layer by layer.",
+    "tags": ["3D printing", "machine", "Three.js"]
+  }
+}

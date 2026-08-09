@@ -6,7 +6,7 @@
   <strong>English</strong> · <a href="README.zh-CN.md">简体中文</a>
 </p>
 
-My playground. Small toys you can just open and play with — no dependencies, no build step.
+My playground. Small toys you can just open and play with — no install or build step.
 
 **→ [Play online](https://huccct.github.io/vibe/)**
 
@@ -14,9 +14,9 @@ My playground. Small toys you can just open and play with — no dependencies, n
 
 | | Toy | What it does |
 | --- | --- | --- |
+| 🖨️ | [Bambu Lab A1 Print Desk](toys/a1-printer/) | A detailed Three.js A1 printing sculptural samples layer by layer |
 | 🐉 | [Mythical Beast Field Guide](toys/shan-hai-beasts/) | Turn a page and meet a beast no ancient book remembered |
 | 🖌️ | [Gravity Calligraphy](toys/gravity-calligraphy/) | Ink refuses to stay on the page. Release a stroke and let gravity and wind take over |
-| 🏮 | [Shadow Play](toys/shadow-play/) | A Huaxian wanwanqiang shadow puppet booth. Steer the rod, catch the gong beat, play out Monkey King's three fights with the bone demon. Records to GIF |
 | 🌊 | [flow field](toys/flow-field/) | A few thousand particles drift along a noise field, trails piling up into streamlines. Your cursor pushes them around |
 | 🔉 | [chladni](toys/chladni/) | Nodal lines of a standing wave equation. Twelve thousand grains of sand find the spots that don't vibrate and settle there |
 | 🩸 | [pixel sort](toys/pixel-sort/) | Pixels sorted by luminance into smeared glitch streaks. Drop in your own image, download the result |
@@ -35,7 +35,7 @@ pnpm dev
 
 Open http://localhost:4173 .
 
-No npm dependencies and no build step — it's all native ES modules, straight to the browser. `pnpm dev` runs [scripts/serve.mjs](scripts/serve.mjs), a ~50-line static server on Node's built-ins (ES modules can't load from `file://`, so a server is required). It sends `no-store`, which matters more than it sounds: servers that answer `304` will happily hand the browser a stale ES module or `registry.json`, and you end up debugging a page that's running half your edits.
+No install or build step — the browser runs native ES modules directly, with the occasional library vendored alongside the toys. `pnpm dev` runs [scripts/serve.mjs](scripts/serve.mjs), a ~50-line static server on Node's built-ins (ES modules can't load from `file://`, so a server is required). It sends `no-store`, which matters more than it sounds: servers that answer `304` will happily hand the browser a stale ES module or `registry.json`, and you end up debugging a page that's running half your edits.
 
 ## Adding a toy
 

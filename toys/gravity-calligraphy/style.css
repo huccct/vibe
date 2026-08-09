@@ -21,7 +21,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  box-shadow: inset 0 0 90px rgba(73, 43, 24, 0.16);
+  border: 1px solid rgba(73, 43, 24, 0.1);
 }
 
 .paper canvas {

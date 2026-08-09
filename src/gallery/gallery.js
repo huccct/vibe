@@ -6,14 +6,14 @@ import { getLang, mountLangToggle, applyLangAttr } from '../shared/i18n.js'
 
 const UI = {
   zh: {
-    tagline: '一堆好玩的东西。零依赖，点开就能玩。',
+    tagline: '一堆好玩的东西。无需安装，点开就能玩。',
     empty: ['还没有东西。跑 ', ' 加一个。'],
     count: (n) => `${n} 个玩意儿`,
     source: '源码 ↗',
     disabled: '打磨中',
   },
   en: {
-    tagline: 'A pile of fun little things. No deps, just open and play.',
+    tagline: 'A pile of fun little things. No install, just open and play.',
     empty: ['Nothing here yet. Run ', ' to add one.'],
     count: (n) => `${n} ${n === 1 ? 'toy' : 'toys'}`,
     source: 'source ↗',

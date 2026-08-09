@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../assets/logo.svg" type="image/svg+xml" />
+    <script src="../../src/shared/theme.js"></script>
+    <title>拓竹 A1 打印桌 — vibe</title>
+    <link rel="stylesheet" href="../../src/shared/vibe.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="toy-shell">
+      <div class="toy-bar">
+        <a class="back" href="../../">← vibe</a>
+        <h1 id="title">拓竹 A1 打印桌</h1>
+        <span class="hint" id="hint">拖动画面转动视角</span>
+        <span id="lang"></span>
+      </div>
+
+      <main class="printer-stage" id="stage">
+        <div class="badge"><span class="pulse"></span><span id="status">打印中</span></div>
+        <div class="controls">
+          <label class="model-label">
+            <span id="modelLabel">样件</span>
+            <select id="model">
+              <option value="vase">旋涡珊瑚</option>
+              <option value="cup">折纸灯罩</option>
+              <option value="bowl">花瓣托盘</option>
+            </select>
+          </label>
+          <label class="progress-label">
+            <span id="progressLabel">打印进度</span>
+            <input id="progress" type="range" min="0" max="1000" value="0" />
+            <output id="percent">0%</output>
+          </label>
+          <div class="color-label">
+            <span id="colorLabel">耗材</span>
+            <input id="color0" type="color" value="#65d7ca" aria-label="AMS 1 料色" />
+            <input id="color1" type="color" value="#8094d9" aria-label="AMS 2 料色" />
+            <input id="color2" type="color" value="#f0f0e8" aria-label="AMS 3 料色" />
+            <input id="color3" type="color" value="#3b4142" aria-label="AMS 4 料色" />
+          </div>
+          <button id="pause" type="button">暂停</button>
+          <button id="restart" type="button">重新打印</button>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
