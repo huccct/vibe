@@ -14,6 +14,7 @@
 
 | | 玩意儿 | 是什么 |
 | --- | --- | --- |
+| 🧰 | [AI Skills 小白装备包](toys/skill-kit/) | 5 个值得装的 Agent Skills：看懂、复制、安装、直接开用 |
 | 🖨️ | [拓竹 A1 打印桌](toys/a1-printer/) | 一台细节丰富的 Three.js A1，看艺术样件逐层长出来 |
 | 🐉 | [山海异兽图鉴](toys/shan-hai-beasts/) | 翻一页，遇见一只没有被古书记下的异兽 |
 | 🖌️ | [重力书法](toys/gravity-calligraphy/) | 写下的墨迹不肯待在纸上。松手后整笔坠落，重力和风说了算 |

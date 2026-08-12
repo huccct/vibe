@@ -128,5 +128,28 @@
         "field guide"
       ]
     }
+  },
+  {
+    "slug": "skill-kit",
+    "accent": "#caff3d",
+    "added": "2026-08-12",
+    "zh": {
+      "title": "AI Skills 小白装备包",
+      "description": "不知道 Skill 是什么也没关系。选一件你想让 AI 做的事，复制，安装，直接开用。",
+      "tags": [
+        "AI工具",
+        "Skills",
+        "小白指南"
+      ]
+    },
+    "en": {
+      "title": "AI Skills Starter Kit",
+      "description": "Five useful agent skills, explained without jargon and ready to copy, install, and use.",
+      "tags": [
+        "AI tools",
+        "Skills",
+        "starter guide"
+      ]
+    }
   }
 ]

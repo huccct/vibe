@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0c0d" />
+    <meta
+      name="description"
+      content="TUNAN 整理的 5 个 AI Agent Skills 小白安装包：看懂、复制、安装、直接开用。"
+    />
+    <link rel="icon" href="../../assets/logo.svg" type="image/svg+xml" />
+    <title>AI Skills 小白装备包 — TUNAN</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="brand" href="../../" aria-label="返回 vibe 首页">
+        <span class="brand-mark">T</span>
+        <span>TUNAN / VIBE</span>
+      </a>
+      <a class="source-link" href="https://skills.sh/" target="_blank" rel="noreferrer">Skills 市场 ↗</a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow"><span></span> NO. 007 · BEGINNER FRIENDLY</p>
+        <div class="hero-grid">
+          <div>
+            <h1>给 AI 装点<br /><em>真本事。</em></h1>
+            <p class="lede">5 个我筛过的 Agent Skills。<br />不知道 Skill 是什么，也能照着装。</p>
+          </div>
+          <div class="loadout" aria-label="五个技能装备槽">
+            <div class="slot s1"><b>01</b><span>寻找</span></div>
+            <div class="slot s2"><b>02</b><span>设计</span></div>
+            <div class="slot s3"><b>03</b><span>上网</span></div>
+            <div class="slot s4"><b>04</b><span>挑刺</span></div>
+            <div class="slot s5"><b>05</b><span>视频</span></div>
+            <div class="scanner"></div>
+          </div>
+        </div>
+        <a class="primary-cta" href="#start">我完全不懂，从这里开始 <span>↓</span></a>
+      </section>
+
+      <section class="explain" id="start">
+        <div class="section-index">00 / 先说人话</div>
+        <h2>Skill 到底是什么？</h2>
+        <div class="analogy">
+          <div class="analogy-before">
+            <span>没装 Skill</span>
+            <strong>“你自己琢磨一下”</strong>
+          </div>
+          <div class="analogy-arrow">→</div>
+          <div class="analogy-after">
+            <span>装了 Skill</span>
+            <strong>“按这套专业流程做”</strong>
+          </div>
+        </div>
+        <p class="plain-copy">
+          它不是一个新 App，也不是模型。你可以把它理解成一份给 AI 看的<strong>专业操作手册</strong>：告诉它遇到某类任务时，应该怎么做、检查什么、怎样才算完成。
+        </p>
+        <div class="notice">
+          <b>先确认一件事</b>
+          <p>你需要在电脑上使用 Codex、Claude Code、Cursor 等 AI 编程助手。只在手机聊天窗口里，不能直接安装。</p>
+        </div>
+      </section>
+
+      <section class="chooser">
+        <div class="section-index">01 / 你想让 AI 做什么？</div>
+        <h2>点一个，直接跳到对应装备</h2>
+        <div class="goal-grid" id="goalGrid">
+          <button data-target="find-skills"><span>⌕</span>自己寻找新能力</button>
+          <button data-target="frontend-design"><span>◇</span>做网页别那么 AI 味</button>
+          <button data-target="agent-browser"><span>↗</span>替我点击和操作网页</button>
+          <button data-target="grill-me"><span>?</span>把我的方案问明白</button>
+          <button data-target="hyperframes"><span>▶</span>用代码做一条视频</button>
+        </div>
+      </section>
+
+      <section class="skills-section">
+        <div class="section-index">02 / TUNAN'S LOADOUT</div>
+        <div class="section-heading">
+          <h2>5 个值得装的 Skills</h2>
+          <p>不是越多越好。先装你现在真的用得上的。</p>
+        </div>
+        <div class="skills" id="skills"></div>
+      </section>
+
+      <section class="install-all">
+        <div class="all-copy">
+          <div class="section-index">03 / 懒人通道</div>
+          <h2>五个都想要？</h2>
+          <p>把下面整段复制给你的 AI，让它逐个安装并检查。过程中如果需要权限，让它先解释。</p>
+        </div>
+        <div class="terminal">
+          <div class="terminal-head"><span></span><span></span><span></span><b>install-all.txt</b></div>
+          <pre id="allPrompt"></pre>
+          <button class="copy-all" data-copy-target="allPrompt">复制整段给 AI</button>
+        </div>
+      </section>
+
+      <section class="safety">
+        <div class="safety-icon">!</div>
+        <div>
+          <h2>装之前，多看一眼来源。</h2>
+          <p>Skill 是第三方提供的说明和脚本。优先选择官方或高信誉仓库；安装前看来源、安装量和安全审计。涉及账号、付款、删除文件时，永远要求 AI 先说明再操作。</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div><b>TUNAN</b><span>把 AI 这场戏，讲给人听。</span></div>
+      <p>这不是广告，也不是无脑排行榜。只是我用过、研究过之后，愿意推荐给朋友的 5 件装备。</p>
+      <a href="https://github.com/huccct/vibe" target="_blank" rel="noreferrer">SOURCE ↗</a>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">已复制，可以去粘贴了</div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

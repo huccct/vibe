@@ -14,6 +14,7 @@ My playground. Small toys you can just open and play with — no install or buil
 
 | | Toy | What it does |
 | --- | --- | --- |
+| 🧰 | [AI Skills Starter Kit](toys/skill-kit/) | Five useful agent skills, explained without jargon and ready to install |
 | 🖨️ | [Bambu Lab A1 Print Desk](toys/a1-printer/) | A detailed Three.js A1 printing sculptural samples layer by layer |
 | 🐉 | [Mythical Beast Field Guide](toys/shan-hai-beasts/) | Turn a page and meet a beast no ancient book remembered |
 | 🖌️ | [Gravity Calligraphy](toys/gravity-calligraphy/) | Ink refuses to stay on the page. Release a stroke and let gravity and wind take over |
