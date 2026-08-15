@@ -1,0 +1,22 @@
+{
+  "accent": "#c28a52",
+  "added": "2026-08-15",
+  "zh": {
+    "title": "活字印刷桌",
+    "description": "木活字反排入框，亲手滚墨、拉杆、揭纸。墨少会缺，墨多会洇，每一张都有自己的脾气。",
+    "tags": [
+      "活字",
+      "印刷",
+      "手工"
+    ]
+  },
+  "en": {
+    "title": "Movable Type Press",
+    "description": "Set mirrored wooden type, roll the ink, pull the press, and peel away a print whose imperfections are entirely your own.",
+    "tags": [
+      "movable type",
+      "printing",
+      "craft"
+    ]
+  }
+}

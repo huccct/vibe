@@ -16,6 +16,7 @@
 | --- | --- | --- |
 | 🧰 | [AI Skills 小白装备包](toys/skill-kit/) | 5 个值得装的 Agent Skills：看懂、复制、安装、直接开用 |
 | 🖨️ | [拓竹 A1 打印桌](toys/a1-printer/) | 一台细节丰富的 Three.js A1，看艺术样件逐层长出来 |
+| 🧱 | [活字印刷桌](toys/movable-type/) | 木活字反排入框，亲手滚墨、拉杆、揭纸 |
 | 🐉 | [山海异兽图鉴](toys/shan-hai-beasts/) | 翻一页，遇见一只没有被古书记下的异兽 |
 | 🖌️ | [重力书法](toys/gravity-calligraphy/) | 写下的墨迹不肯待在纸上。松手后整笔坠落，重力和风说了算 |
 | 🌊 | [flow field](toys/flow-field/) | 几千个粒子跟着噪声场漂，拖尾积成流线。鼠标能推开它们 |

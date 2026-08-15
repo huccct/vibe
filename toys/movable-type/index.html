@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../assets/logo.svg" type="image/svg+xml" />
+    <script src="../../src/shared/theme.js"></script>
+    <title>活字印刷桌 · vibe</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <a class="back" href="../../">vibe archive</a>
+
+    <main class="workshop">
+      <header class="masthead">
+        <div class="title-lockup">
+          <p class="edition">试印第〇一号</p>
+          <div>
+            <p class="eyebrow">Movable Type Workshop</p>
+            <h1>活字印刷桌</h1>
+          </div>
+        </div>
+        <p class="dek">字面反排，滚筒上墨，拉杆压印。墨色、力道与纸纤维，让每一张都有自己的脾气。</p>
+      </header>
+
+      <form class="composer" id="composer">
+        <label for="phrase">排一句</label>
+        <input id="phrase" value="春风得意" maxlength="8" autocomplete="off" />
+        <button type="submit">拣字排版</button>
+        <button type="button" id="surprise" class="quiet">换一句</button>
+      </form>
+
+      <section class="press-shell" aria-label="活字印刷机">
+        <canvas id="press" width="1200" height="720" tabindex="0" aria-label="拖动滚筒上墨，再拉下右侧压杆"></canvas>
+      </section>
+
+      <div class="status-line">
+        <span id="status">先拖住滚筒，在活字上来回滚几遍</span>
+        <span id="quality">墨色：未上墨</span>
+      </div>
+
+      <aside class="verdict" id="verdict" hidden aria-live="polite">
+        <span class="verdict-no" id="edition-no">试印第 001 张</span>
+        <strong id="rarity">佳印</strong>
+        <span class="verdict-accident" id="accident">字口清健</span>
+        <span class="verdict-stamp" id="stamp">此页不传</span>
+      </aside>
+
+      <div class="footer-tools">
+        <div class="controls">
+          <button id="reink">滚筒蘸墨</button>
+          <button id="download" disabled>收下印张</button>
+          <button id="mute" class="icon" aria-label="静音">声音</button>
+        </div>
+        <p class="credit"><span id="collection-count">尚未入藏</span> · 桌上的字是反的，落到纸上才会正过来。</p>
+      </div>
+    </main>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

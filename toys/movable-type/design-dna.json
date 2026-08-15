@@ -1,0 +1,40 @@
+{
+  "name": "宋版印坊",
+  "version": "1.0.0",
+  "source": {"type": "described-style", "description": "A contemporary archival presentation of a Song-era movable-type workshop: uncoated paper, ink-black rules, beech wood, cast iron and a single cinnabar accent.", "sourceUrl": null, "extractedAt": "2026-08-15"},
+  "designSystem": {
+    "colors": {
+      "primary": "#171612", "secondary": "#9b744c", "accent": "#a43b29",
+      "neutral": ["#f7f1e3", "#eee5d1", "#d8ccb3", "#aaa089", "#6f695b", "#37352e", "#171612"],
+      "semantic": {"success": "#566846", "warning": "#9b6a2f", "error": "#a43b29", "info": "#465e6b"},
+      "background": {"base": "#eee5d1", "surface": "#f7f1e3", "elevated": "#fffaf0"},
+      "text": {"primary": "#171612", "secondary": "#37352e", "muted": "#6f695b", "inverse": "#f7f1e3"},
+      "border": {"default": "#aaa089", "strong": "#171612", "subtle": "#d8ccb3"}
+    },
+    "typography": {
+      "fontFamilies": {"heading": "Songti SC, STSong, Noto Serif CJK SC, serif", "body": "-apple-system, BlinkMacSystemFont, PingFang SC, sans-serif", "mono": "SFMono-Regular, Roboto Mono, monospace"},
+      "weights": {"regular": 400, "medium": 500, "semibold": 600, "bold": 700},
+      "scale": {"xs": "10px", "sm": "12px", "base": "14px", "lg": "18px", "xl": "24px", "2xl": "38px", "3xl": "70px"},
+      "lineHeights": {"tight": 1.05, "normal": 1.65, "relaxed": 1.9},
+      "letterSpacing": {"tight": "0", "normal": "0.02em", "wide": "0.12em"}
+    },
+    "spacing": {"unit": 4, "scale": [4, 8, 12, 16, 24, 32, 48, 64, 96], "containerMaxWidth": "1180px", "sectionGap": "30px"},
+    "shapes": {"borderRadius": {"small": "0", "medium": "0", "large": "0", "full": "0"}, "borderWidth": {"thin": "1px", "medium": "2px", "thick": "3px"}},
+    "shadows": {"small": "3px 4px 0 rgba(23,22,18,.12)", "medium": "7px 8px 0 rgba(23,22,18,.14)", "large": "12px 14px 0 rgba(23,22,18,.12)", "inner": "inset 0 0 0 1px rgba(23,22,18,.08)"},
+    "components": {"button": {"height": "42px", "paddingX": "18px", "borderRadius": "0", "fontSize": "12px", "fontWeight": 400}, "input": {"height": "48px", "paddingX": "20px", "borderRadius": "0", "fontSize": "21px"}, "card": {"padding": "0", "borderRadius": "0", "borderStyle": "1px solid #171612"}}
+  },
+  "designStyle": {
+    "mood": ["quiet", "tactile", "archival", "meticulous"],
+    "visualLanguage": "Editorial restraint modeled on a carefully catalogued hand-printing studio, using hard rules, generous paper margins and materially believable tools.",
+    "imagery": {"style": "top-down workshop still life", "treatment": "subtle grain, natural materials, no glow", "aspectRatios": ["5:3", "3:2"]},
+    "iconography": {"style": "typographic labels over pictograms", "strokeWidth": "1px", "size": "12px"},
+    "motion": {"duration": {"fast": "100ms", "normal": "160ms", "slow": "570ms"}, "easing": "cubic-bezier(.2,.72,.22,1)", "style": "mechanical, direct and weight-aware"},
+    "texture": "Uncoated book paper fibers outside; beech grain, ink bloom and cast-iron wear inside the press canvas.",
+    "density": "compact controls with generous editorial margins",
+    "personality": "A working print room presented with the precision of a museum catalogue, never theatrical faux-antique styling."
+  },
+  "effectsStrategy": {"primary": "none", "rationale": "The interaction itself is the visual effect; DOM styling stays editorial while Canvas renders the physical workshop.", "backgroundEffects": ["low-opacity paper fibers", "42px editorial grid"], "interactionEffects": ["drag roller", "weighted lever", "paper reveal"], "animationIntensity": "medium", "performanceBudget": {"targetFps": 60, "maxParticles": 0, "allowWebGL": false}},
+  "visualMetaphor": "A freshly catalogued proofing bench where an austere book page opens into a tactile working press.",
+  "responsive": {"breakpoints": {"mobile": "760px", "tablet": "960px", "desktop": "1180px"}, "strategy": "The masthead collapses to one column, controls become full-width, and the fixed-ratio press scales without changing its mechanical coordinate system.", "mobileAdaptations": ["single-column masthead", "hidden composer label", "stacked process readout", "full-width controls"]},
+  "accessibility": {"contrastTarget": "WCAG AA", "focusStyle": "3px cinnabar inset outline", "reducedMotion": "Disable transitions and reveal the printed sheet immediately.", "minTouchTarget": "42px"}
+}
