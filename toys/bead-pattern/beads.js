@@ -9,18 +9,50 @@ export const PALETTE = [
   ['B29','荧光黄','#dff24c'],['B30','青绿','#35b9a5'],['B31','肤色','#e8b98f'],['B32','透明感蓝','#b7dde1'],
 ].map(([code,name,hex])=>({code,name,hex,rgb:hex.match(/\w\w/g).map(v=>parseInt(v,16))}))
 
+function oklab(r,g,b){
+  const linear=value=>{value/=255;return value<=.04045?value/12.92:((value+.055)/1.055)**2.4}
+  r=linear(r);g=linear(g);b=linear(b)
+  const l=Math.cbrt(.4122214708*r+.5363325363*g+.0514459929*b)
+  const m=Math.cbrt(.2119034982*r+.6806995451*g+.1073969566*b)
+  const s=Math.cbrt(.0883024619*r+.2817188376*g+.6299787005*b)
+  return [.2104542553*l+.793617785*m-.0040720468*s,1.9779984951*l-2.428592205*m+.4505937099*s,.0259040371*l+.7827717662*m-.808675766*s]
+}
+
+function distance(a,b){return (a[0]-b[0])**2+(a[1]-b[1])**2+(a[2]-b[2])**2}
+
 export function nearestColor(r,g,b,palette=PALETTE) {
-  let best=palette[0],bestDistance=Infinity
-  for(const color of palette){const [cr,cg,cb]=color.rgb;const d=(r-cr)**2+(g-cg)**2+(b-cb)**2;if(d<bestDistance){best=color;bestDistance=d}}
+  const lab=oklab(r,g,b);let best=palette[0],bestDistance=Infinity
+  for(const color of palette){const d=distance(lab,color.lab||(color.lab=oklab(...color.rgb)));if(d<bestDistance){best=color;bestDistance=d}}
   return best
 }
 
-export function quantize(data,palette=PALETTE,maxColors=12) {
-  const first=[];const counts=new Map()
+export function quantize(data,palette=PALETTE,maxColors=12,width=0) {
+  const pixels=[]
   for(let i=0;i<data.length;i+=4){
-    if(data[i+3]<80){first.push(null);continue}
-    const color=nearestColor(data[i],data[i+1],data[i+2],palette);first.push(color);counts.set(color,(counts.get(color)||0)+1)
+    if(data[i+3]<80)continue
+    let weight=1
+    if(width){
+      const x=(i/4)%width
+      for(const neighbor of [x?i-4:-1,i>=width*4?i-width*4:-1])if(neighbor>=0&&data[neighbor+3]>=80){
+        const delta=(Math.abs(data[i]-data[neighbor])+Math.abs(data[i+1]-data[neighbor+1])+Math.abs(data[i+2]-data[neighbor+2]))/3
+        weight=Math.max(weight,1+Math.min(3,delta/64))
+      }
+    }
+    pixels.push({offset:i,lab:oklab(data[i],data[i+1],data[i+2]),weight})
   }
-  const selected=[...counts].sort((a,b)=>b[1]-a[1]).slice(0,maxColors).map(([color])=>color)
-  return first.map((color,i)=>color===null?null:nearestColor(data[i*4],data[i*4+1],data[i*4+2],selected))
+  if(!pixels.length)return Array(data.length/4).fill(null)
+  const labs=palette.map(color=>color.lab||(color.lab=oklab(...color.rgb)))
+  const costs=pixels.map(pixel=>labs.map(lab=>distance(pixel.lab,lab)))
+  const best=Array(pixels.length).fill(Infinity),selected=[]
+  while(selected.length<Math.min(maxColors,palette.length)){
+    let winner=-1,winnerCost=Infinity
+    for(let candidate=0;candidate<palette.length;candidate++)if(!selected.includes(candidate)){
+      let cost=0;for(let p=0;p<pixels.length;p++)cost+=Math.min(best[p],costs[p][candidate])*pixels[p].weight
+      if(cost<winnerCost){winner=candidate;winnerCost=cost}
+    }
+    selected.push(winner);for(let p=0;p<pixels.length;p++)best[p]=Math.min(best[p],costs[p][winner])
+  }
+  const result=Array(data.length/4).fill(null)
+  pixels.forEach((pixel,p)=>{let winner=selected[0];for(const candidate of selected)if(costs[p][candidate]<costs[p][winner])winner=candidate;result[pixel.offset/4]=palette[winner]})
+  return result
 }

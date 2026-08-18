@@ -21,7 +21,15 @@ main { max-width:1440px; margin:auto; padding:0 28px 28px; }
 .range { display:grid; grid-template-columns:auto 110px; align-items:center; gap:10px; color:#fff; white-space:nowrap; }
 .range output { color:var(--yellow); font:700 12px/1 monospace; }
 .range input { width:110px; accent-color:var(--yellow); }
-.check { display:flex; gap:8px; align-items:center; color:#fff; font-size:12px; }
+.mode,.check { display:flex; gap:8px; align-items:center; color:#fff; font-size:12px; }
+.mode select { border:0; border-radius:7px; padding:6px 8px; background:#fff; color:var(--ink); }
+.framing { position:relative; color:#fff; }
+.framing summary { cursor:pointer; list-style:none; white-space:nowrap; }
+.framing summary::after { content:"＋"; margin-left:5px; }
+.framing[open] summary::after { content:"−"; }
+.framing div { position:absolute; z-index:3; top:34px; left:50%; display:grid; gap:12px; width:230px; padding:14px; border:2px solid var(--ink); border-radius:12px; background:var(--surface); color:var(--ink); box-shadow:4px 4px 0 var(--ink); transform:translateX(-50%); }
+.framing label { display:grid; grid-template-columns:36px 1fr; align-items:center; gap:8px; }
+.framing input { width:100%; accent-color:var(--coral); }
 .check input { accent-color:var(--yellow); }
 .actions { display:flex; gap:4px; margin-left:auto; }
 .actions button { color:#fff; }

@@ -5,6 +5,10 @@ const ctx=canvas.getContext('2d')
 const fileInput=document.getElementById('file')
 const sizeInput=document.getElementById('size')
 const colorsInput=document.getElementById('colors')
+const modeInput=document.getElementById('mode')
+const zoomInput=document.getElementById('zoom')
+const panXInput=document.getElementById('pan-x')
+const panYInput=document.getElementById('pan-y')
 const codesInput=document.getElementById('codes')
 const swatches=document.getElementById('swatches')
 const dropzone=document.getElementById('dropzone')
@@ -14,6 +18,8 @@ let source=makeSample(),cols=0,rows=0,cells=[],selectedColor=undefined
 fileInput.addEventListener('change',()=>loadFile(fileInput.files[0]))
 sizeInput.addEventListener('input',()=>{document.getElementById('size-out').textContent=sizeInput.value;generate()})
 colorsInput.addEventListener('input',()=>{document.getElementById('colors-out').textContent=colorsInput.value;generate()})
+modeInput.addEventListener('change',generate)
+for(const input of [zoomInput,panXInput,panYInput])input.addEventListener('input',generate)
 codesInput.addEventListener('change',draw)
 document.getElementById('eraser').addEventListener('click',()=>selectColor(null))
 document.getElementById('download').addEventListener('click',download)
@@ -39,16 +45,33 @@ function makeSample(){
 async function loadFile(file){
   if(!file)return
   const url=URL.createObjectURL(file);const image=new Image()
-  try{image.src=url;await image.decode();source=image;generate();document.getElementById('tip').textContent=`已载入 ${file.name} · 点色卡后可手工修正`}
+  try{
+    image.src=url;await image.decode();source=image
+    modeInput.value=detectMode(image);sizeInput.value=modeInput.value==='pixel'?64:48;colorsInput.value=modeInput.value==='pixel'?16:18
+    zoomInput.value=100;panXInput.value=panYInput.value=50
+    document.getElementById('size-out').textContent=sizeInput.value;document.getElementById('colors-out').textContent=colorsInput.value
+    generate();document.getElementById('tip').textContent=`已按${modeInput.value==='pixel'?'像素 / 插画':'照片'}优化 · ${sizeInput.value} 格 · 可继续调整`
+  }
   finally{URL.revokeObjectURL(url)}
+}
+
+function detectMode(image){
+  const probe=document.createElement('canvas');probe.width=probe.height=64
+  const p=probe.getContext('2d',{willReadFrequently:true});p.imageSmoothingEnabled=false;p.drawImage(image,0,0,64,64)
+  const data=p.getImageData(0,0,64,64).data,colors=new Set();let transparent=0
+  for(let i=0;i<data.length;i+=4){if(data[i+3]<80){transparent++;continue}colors.add(`${data[i]>>4},${data[i+1]>>4},${data[i+2]>>4}`)}
+  return transparent>300||colors.size<180?'pixel':'photo'
 }
 
 function generate(){
   const size=Number(sizeInput.value),ratio=source.width/source.height
   if(ratio>=1){cols=size;rows=Math.max(1,Math.round(size/ratio))}else{rows=size;cols=Math.max(1,Math.round(size*ratio))}
   const sample=document.createElement('canvas');sample.width=cols;sample.height=rows
-  const s=sample.getContext('2d',{willReadFrequently:true});s.imageSmoothingEnabled=true;s.imageSmoothingQuality='high';s.clearRect(0,0,cols,rows);s.drawImage(source,0,0,cols,rows)
-  cells=quantize(s.getImageData(0,0,cols,rows).data,PALETTE,Number(colorsInput.value))
+  const s=sample.getContext('2d',{willReadFrequently:true}),zoom=Number(zoomInput.value)/100
+  const cropWidth=source.width/zoom,cropHeight=source.height/zoom
+  const cropX=(source.width-cropWidth)*Number(panXInput.value)/100,cropY=(source.height-cropHeight)*Number(panYInput.value)/100
+  s.imageSmoothingEnabled=modeInput.value==='photo';s.imageSmoothingQuality='high';s.clearRect(0,0,cols,rows);s.drawImage(source,cropX,cropY,cropWidth,cropHeight,0,0,cols,rows)
+  cells=quantize(s.getImageData(0,0,cols,rows).data,PALETTE,Number(colorsInput.value),cols)
   selectedColor=undefined;draw();updateMaterials()
 }
 

@@ -17,8 +17,14 @@
     <main>
       <section class="toolbar" aria-label="图纸设置">
         <label class="upload">＋ 上传图片<input id="file" type="file" accept="image/*" /></label>
-        <label class="range"><span>尺寸 <output id="size-out">32</output></span><input id="size" type="range" min="12" max="64" value="32" /></label>
+        <label class="range"><span>尺寸 <output id="size-out">48</output></span><input id="size" type="range" min="12" max="96" value="48" /></label>
         <label class="range"><span>颜色 <output id="colors-out">12</output></span><input id="colors" type="range" min="4" max="24" value="12" /></label>
+        <label class="mode"><span>图像</span><select id="mode"><option value="pixel">像素 / 插画</option><option value="photo">照片</option></select></label>
+        <details class="framing"><summary>取景</summary><div>
+          <label><span>放大</span><input id="zoom" type="range" min="100" max="300" value="100" /></label>
+          <label><span>左右</span><input id="pan-x" type="range" min="0" max="100" value="50" /></label>
+          <label><span>上下</span><input id="pan-y" type="range" min="0" max="100" value="50" /></label>
+        </div></details>
         <label class="check"><input id="codes" type="checkbox" /> 显示色号</label>
         <div class="actions"><button id="print">打印</button><button id="download">下载图纸</button></div>
       </section>
