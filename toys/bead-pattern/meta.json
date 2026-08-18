@@ -1,0 +1,14 @@
+{
+  "accent": "#ef5b49",
+  "added": "2026-08-18",
+  "zh": {
+    "title": "拼豆图纸生成器",
+    "description": "上传图片，自动生成可修改、可打印的拼豆图纸和颜色用量清单。",
+    "tags": ["拼豆", "像素画", "工具"]
+  },
+  "en": {
+    "title": "Bead Pattern Maker",
+    "description": "Turn an image into an editable, printable fuse-bead pattern with a color and quantity list.",
+    "tags": ["fuse beads", "pixel art", "tool"]
+  }
+}
