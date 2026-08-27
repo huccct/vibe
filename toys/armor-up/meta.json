@@ -1,0 +1,14 @@
+{
+  "accent": "#dce8e3",
+  "added": "2026-08-26",
+  "zh": {
+    "title": "RIPPLE MIRROR",
+    "description": "挥动双手，让实时摄像头画面泛起水波与漩涡。",
+    "tags": ["手势", "流体", "摄像头"]
+  },
+  "en": {
+    "title": "RIPPLE MIRROR",
+    "description": "Move your hands to ripple and twist your live camera reflection.",
+    "tags": ["gesture", "fluid", "camera"]
+  }
+}

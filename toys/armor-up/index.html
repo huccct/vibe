@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../assets/logo.svg" type="image/svg+xml" />
+    <title>RIPPLE MIRROR — vibe</title>
+    <link rel="stylesheet" href="../../src/shared/vibe.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="toy-shell">
+      <header class="toy-bar">
+        <a class="back" href="../../">VIBE / 09</a>
+        <h1>RIPPLE MIRROR</h1>
+        <span class="status" id="status">等待连接</span>
+        <span class="hint">划过水波 · 停留漩涡 · 握拳冲击</span>
+      </header>
+
+      <section class="toy-stage" id="stage" aria-label="手势控制摄像头流体镜面">
+        <div class="boot" id="boot">
+          <p class="eyebrow">INTERACTIVE STUDY · 2026</p>
+          <h2>流体镜面</h2>
+          <p>移动制造涟漪，停留形成漩涡。</p>
+          <div class="actions">
+            <button class="primary" id="start">开启摄像头</button>
+            <button id="demo">鼠标体验</button>
+          </div>
+        </div>
+        <video id="camera" playsinline muted></video>
+        <canvas id="fx"></canvas>
+        <div class="readout" id="readout" hidden>
+          <span>INPUT <b id="field">MOUSE</b></span>
+          <span>GESTURE <b id="gesture">IDLE</b></span>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
