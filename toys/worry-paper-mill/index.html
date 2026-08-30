@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../assets/logo.svg" type="image/svg+xml" />
+    <title>夜间情绪数据科 · vibe</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="bureau" id="stage" aria-label="夜间情绪数据科像素互动工具">
+      <a class="back plaque" href="../../">← VIBE 档案库</a>
+
+      <header class="title-lockup">
+        <p>市民情绪材料管理局 · 夜班窗口 09</p>
+        <h1>夜间情绪数据科</h1>
+        <span>将未决事项转为纸质记录</span>
+      </header>
+
+      <section class="console" aria-live="polite">
+        <div class="console-label"><span class="lamp" id="lamp"></span>09 号工位</div>
+        <strong id="phase">等待受理</strong>
+        <span id="status">请填写一份情绪材料登记单</span>
+      </section>
+
+      <form class="intake" id="intake">
+        <div class="form-heading">
+          <span>情绪材料登记单</span>
+          <b>表 09-A</b>
+        </div>
+        <label for="worry">未决事项简述</label>
+        <textarea id="worry" maxlength="80" placeholder="写下一件想暂时放下的事" required></textarea>
+        <div class="form-footer">
+          <small>仅在本机处理 · 不上传 · 不留底</small>
+          <button type="submit"><i></i>盖章受理</button>
+        </div>
+      </form>
+
+      <ol class="routing" aria-label="情绪材料处理工序">
+        <li data-step="shred"><b>01</b><span>时机打孔</span></li>
+        <li data-step="pulp"><b>02</b><span>旋流连击</span></li>
+        <li data-step="press"><b>03</b><span>压力锁定</span></li>
+        <li data-step="release"><b>04</b><span>回执出库</span></li>
+      </ol>
+
+      <p class="hint plaque" id="hint">填写登记单后盖章受理</p>
+      <output class="arcade-feedback" id="arcade-feedback" hidden></output>
+
+      <section class="output-tray" id="done-actions" hidden>
+        <p><b>09-R</b> 情绪材料处理回执已出纸</p>
+        <div>
+          <button id="download" type="button">撕下回执</button>
+          <button id="again" type="button">领取新表</button>
+        </div>
+      </section>
+
+      <noscript>这个工具需要 JavaScript 才能运转。</noscript>
+    </main>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

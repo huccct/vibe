@@ -220,5 +220,28 @@
         "starter guide"
       ]
     }
+  },
+  {
+    "slug": "worry-paper-mill",
+    "accent": "#a33b32",
+    "added": "2026-08-28",
+    "zh": {
+      "title": "夜间情绪数据科",
+      "description": "把一件烦恼登记、解体、编码并压成只属于它的像素纸印。",
+      "tags": [
+        "情绪",
+        "像素",
+        "互动"
+      ]
+    },
+    "en": {
+      "title": "Night Emotion Data Office",
+      "description": "Register a worry, encode it, and press it into a one-of-a-kind pixel paper record.",
+      "tags": [
+        "ritual",
+        "pixel",
+        "interactive"
+      ]
+    }
   }
 ]
