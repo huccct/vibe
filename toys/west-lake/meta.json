@@ -1,0 +1,22 @@
+{
+  "accent": "#547763",
+  "added": "2026-09-12",
+  "zh": {
+    "title": "西湖 · 湖上望雷峰",
+    "description": "依据官方尺寸、实景照片与公开地形重建雷峰塔，环看重檐与湖面倒影。",
+    "tags": [
+      "3D",
+      "实景重建",
+      "建筑"
+    ]
+  },
+  "en": {
+    "title": "West Lake · Leifeng Pagoda",
+    "description": "A reference-based reconstruction of Leifeng Pagoda, using official dimensions and public terrain data.",
+    "tags": [
+      "3D",
+      "reconstruction",
+      "architecture"
+    ]
+  }
+}

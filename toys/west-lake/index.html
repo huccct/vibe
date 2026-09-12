@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#bac8ce">
+<title>西湖 · 雷峰塔实景重建</title><link rel="icon" href="../../assets/logo.svg" type="image/svg+xml"><link rel="stylesheet" href="./style.css">
+<script type="importmap">{"imports":{"three":"../../src/vendor/three.module.min.js","three/addons/":"../../src/vendor/addons/"}}</script>
+</head>
+<body>
+<canvas id="scene" tabindex="0" aria-label="雷峰塔三维场景。拖动旋转，滚轮缩放，方向键调整视角；下方可切换湖面、塔身和俯瞰视角。"></canvas>
+<header><a href="../../">← VIBE</a><span>杭州 · 西湖南岸</span><button id="info" aria-label="查看建模依据">建模依据 ↗</button></header>
+<div class="title"><p>HANGZHOU / WEST LAKE</p><h1>湖上望雷峰</h1><span>灰瓦、重檐，与一湖天光。</span></div>
+<p id="status" role="status">正在载入塔身与山岸…</p>
+<nav aria-label="场景视角"><button id="lake" aria-pressed="true" class="active">湖面远眺</button><button id="detail" aria-pressed="false">近看塔身</button><button id="aerial" aria-pressed="false">俯瞰山岸</button><span></span><button id="motion" aria-pressed="false">暂停水面</button></nav>
+<div class="zoom"><button id="zoom-in" aria-label="放大">＋</button><button id="zoom-out" aria-label="缩小">−</button></div>
+<footer><span>拖动环看 · 滚轮缩放</span><a href="./assets/leifeng-realistic.glb" download>下载模型 ↓</a></footer>
+<dialog id="sources"><form method="dialog"><button aria-label="关闭建模依据">×</button></form><p class="kicker">REFERENCE & SCALE</p><h2>重建依据</h2><p>塔体采用米制尺度，根据雷峰塔景区公布的尺寸与实景照片重建外观。</p><dl><dt>总高</dt><dd>71.679 m</dd><dt>台基对径</dt><dd>60 m</dd><dt>塔身对径</dt><dd>28 m</dd><dt>结构</dt><dd>五层 · 八角 · 铜瓦</dd></dl><p>山体采用公开高程数据，水岸采用 OpenStreetMap。屋面曲线、局部构件及植被按照片推定；不是激光扫描或测绘级模型。</p><a href="http://jing.leifengta.com/introduction.aspx?c_kind=4&c_kind2=16&c_kind3=22&c_kind4=34" target="_blank" rel="noopener">景区官方建筑资料 ↗</a><a href="./SOURCES.md" target="_blank">完整来源与精度说明 ↗</a></dialog>
+<noscript>请启用 JavaScript，或下载 GLB 模型查看。</noscript><script type="module" src="./main.js"></script>
+</body></html>
