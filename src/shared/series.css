@@ -1,0 +1,14 @@
+/* 系列入口共用字号与触控区域；颜色、位置沿用作品本身。 */
+a.series-home {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font: 500 13px/1.4 -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: nowrap;
+  text-decoration: none;
+}
+a.series-home::before { content: none; }
+a.series-home:hover { text-decoration: underline; text-underline-offset: 4px; }
+a.series-home:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }

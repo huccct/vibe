@@ -4,13 +4,13 @@ import { LAYERS, MODELS, outlinePoint, printerMotion, visibleLayers } from './pr
 
 const UI = {
   zh: {
-    pageTitle: '拓竹 A1 打印桌 — vibe', title: '拓竹 A1 打印桌', hint: '拖动画面转动视角',
+    pageTitle: '拓竹 A1 打印桌 · vibe', title: '拓竹 A1 打印桌', hint: '拖动画面转动视角',
     model: '样件', models: ['旋涡珊瑚', '折纸灯罩', '花瓣托盘'],
     progress: '打印进度', color: '耗材', pause: '暂停', resume: '继续', restart: '重新打印',
     printing: '打印中', paused: '已暂停', done: '打印完成', canvas: '可旋转的拓竹 A1 三维打印演示',
   },
   en: {
-    pageTitle: 'Bambu Lab A1 Print Desk — vibe', title: 'Bambu Lab A1 Print Desk', hint: 'Drag to orbit the printer',
+    pageTitle: 'Bambu Lab A1 Print Desk · vibe', title: 'Bambu Lab A1 Print Desk', hint: 'Drag to orbit the printer',
     model: 'sample', models: ['Spiral coral', 'Origami lamp', 'Petal tray'],
     progress: 'print progress', color: 'filament', pause: 'pause', resume: 'resume', restart: 'restart',
     printing: 'printing', paused: 'paused', done: 'print complete', canvas: 'Rotatable 3D printing demo of a Bambu Lab A1',

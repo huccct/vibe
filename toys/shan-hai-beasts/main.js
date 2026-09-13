@@ -35,5 +35,5 @@ function render() {
   document.getElementById('title').textContent = lang === 'zh' ? '山海异兽图鉴' : 'Mythical Beast Field Guide'
   document.getElementById('hint').textContent = lang === 'zh' ? '翻一页，遇见一只异兽' : 'Turn a page, meet a beast'
   next.textContent = lang === 'zh' ? '翻一页' : 'turn page'
-  document.title = lang === 'zh' ? '山海异兽图鉴 — vibe' : 'Mythical Beast Field Guide — vibe'
+  document.title = lang === 'zh' ? '山海异兽图鉴 · vibe' : 'Mythical Beast Field Guide · vibe'
 }

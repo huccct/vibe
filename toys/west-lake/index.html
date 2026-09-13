@@ -2,12 +2,13 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#bac8ce">
-<title>西湖 · 雷峰塔实景重建</title><link rel="icon" href="../../assets/logo.svg" type="image/svg+xml"><link rel="stylesheet" href="./style.css">
+<title>西湖 · 湖上望雷峰 · vibe</title><link rel="icon" href="../../assets/logo.svg" type="image/svg+xml"><link rel="stylesheet" href="./style.css">
 <script type="importmap">{"imports":{"three":"../../src/vendor/three.module.min.js","three/addons/":"../../src/vendor/addons/"}}</script>
+  <link rel="stylesheet" href="../../src/shared/series.css" />
 </head>
 <body>
 <canvas id="scene" tabindex="0" aria-label="雷峰塔三维场景。拖动旋转，滚轮缩放，方向键调整视角；下方可切换湖面、塔身和俯瞰视角。"></canvas>
-<header><a href="../../">← VIBE</a><span>杭州 · 西湖南岸</span><button id="info" aria-label="查看建模依据">建模依据 ↗</button></header>
+<header><a href="../../" class="series-home" aria-label="返回 vibe 合集">vibe</a><span>杭州 · 西湖南岸</span><button id="info" aria-label="查看建模依据">建模依据 ↗</button></header>
 <div class="title"><p>HANGZHOU / WEST LAKE</p><h1>湖上望雷峰</h1><span>灰瓦、重檐，与一湖天光。</span></div>
 <p id="status" role="status">正在载入塔身与山岸…</p>
 <nav aria-label="场景视角"><button id="lake" aria-pressed="true" class="active">湖面远眺</button><button id="detail" aria-pressed="false">近看塔身</button><button id="aerial" aria-pressed="false">俯瞰山岸</button><span></span><button id="motion" aria-pressed="false">暂停水面</button></nav>

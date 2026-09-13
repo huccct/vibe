@@ -4,11 +4,11 @@ import { stepBody } from './physics.js'
 
 const UI = {
   zh: {
-    pageTitle: '重力书法 — vibe', title: '重力书法', gravity: '重力', wind: '风', clear: '清空',
+    pageTitle: '重力书法 · vibe', title: '重力书法', gravity: '重力', wind: '风', clear: '清空',
     idle: '在纸上写一笔，松手看它掉下来', drawing: '墨还在笔下', falling: '这一笔交给重力了',
   },
   en: {
-    pageTitle: 'Gravity Calligraphy — vibe', title: 'Gravity Calligraphy', gravity: 'gravity', wind: 'wind', clear: 'clear',
+    pageTitle: 'Gravity Calligraphy · vibe', title: 'Gravity Calligraphy', gravity: 'gravity', wind: 'wind', clear: 'clear',
     idle: 'Draw a stroke, then release it to gravity', drawing: 'The ink is still under your hand', falling: 'Gravity has this stroke now',
   },
 }

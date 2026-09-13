@@ -41,13 +41,15 @@ function html(slug) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>${slug} — vibe</title>
+    <link rel="icon" href="../../assets/logo.svg" type="image/svg+xml" />
+    <title>${slug} · vibe</title>
     <link rel="stylesheet" href="../../src/shared/vibe.css" />
+    <link rel="stylesheet" href="../../src/shared/series.css" />
   </head>
   <body>
     <div class="toy-shell">
       <div class="toy-bar">
-        <a class="back" href="../../">← vibe</a>
+        <a class="back series-home" href="../../" aria-label="返回 vibe 合集">vibe</a>
         <h1>${slug}</h1>
       </div>
       <div class="toy-stage" id="stage"></div>

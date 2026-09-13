@@ -6,14 +6,14 @@ import { getLang, mountLangToggle, applyLangAttr } from '../shared/i18n.js'
 
 const UI = {
   zh: {
-    tagline: '一堆好玩的东西。无需安装，点开就能玩。',
+    tagline: '把好玩的想法做出来。点开就能玩。',
     empty: ['还没有东西。跑 ', ' 加一个。'],
-    count: (n) => `${n} 个玩意儿`,
+    count: (n) => `${n} 个作品`,
     source: '源码 ↗',
     disabled: '打磨中',
   },
   en: {
-    tagline: 'A pile of fun little things. No install, just open and play.',
+    tagline: 'Small ideas, made playable. Open one and explore.',
     empty: ['Nothing here yet. Run ', ' to add one.'],
     count: (n) => `${n} ${n === 1 ? 'toy' : 'toys'}`,
     source: 'source ↗',
@@ -40,6 +40,8 @@ render()
 function render() {
   const lang = getLang()
   const t = UI[lang]
+
+  document.title = lang === 'zh' ? 'vibe · 互动作品合集' : 'vibe · Interactive collection'
 
   tagline.textContent = t.tagline
   source.textContent = t.source
