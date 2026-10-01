@@ -1,0 +1,22 @@
+{
+  "accent": "#aa332a",
+  "added": "2026-10-01",
+  "zh": {
+    "title": "天安门 · 祖国生日快乐",
+    "description": "使用现成天安门模型，走近城楼、彩画斗拱与金水桥，切换视角、昼夜和国庆烟花。模型仅限非商业使用。",
+    "tags": [
+      "3D",
+      "建筑模型",
+      "国庆"
+    ]
+  },
+  "en": {
+    "title": "Tiananmen · A Birthday Postcard",
+    "description": "Explore an imported Tiananmen model, painted brackets and Jinshui bridges, with day/night views and National Day fireworks. Model for non-commercial use only.",
+    "tags": [
+      "3D",
+      "architecture",
+      "National Day"
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f3eadb">
+<title>天安门 · 祖国生日快乐 · vibe</title>
+<meta name="description" content="国庆不出门，在电脑里逛天安门。换个角度看城楼，切换日夜与烟花。">
+<meta property="og:title" content="国庆不出门，在电脑里逛天安门 · vibe idea">
+<meta property="og:image" content="https://huccct.github.io/vibe/toys/tiananmen/assets/cover.png">
+<meta property="og:type" content="website">
+<link rel="icon" href="../../assets/logo.svg" type="image/svg+xml"><link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="../../src/shared/series.css">
+<script type="importmap">{"imports":{"three":"../../src/vendor/three.module.min.js","three/addons/":"../../src/vendor/addons/"}}</script>
+</head>
+<body>
+<canvas id="scene" tabindex="0" aria-label="天安门国庆三维景观，拖动旋转、滚轮缩放，方向键旋转，Home 恢复视角。"></canvas>
+<header><a class="series-home" href="../../" aria-label="返回作品合集">返回</a><button id="save">保存</button></header>
+<p id="status" role="status">载入中…</p>
+<div class="tools" role="group" aria-label="场景控制"><button id="night" aria-pressed="false">夜景</button><button id="detail">近景</button><button id="aerial">俯瞰</button><button id="orbit" aria-pressed="false">环游</button><button id="reset">重置</button><button id="fireworks" class="celebrate">烟花</button></div>
+<footer><a href="./SOURCES.md" target="_blank">模型来源 · 非商用</a></footer>
+<noscript>请启用 JavaScript 查看 3D 景观。</noscript><script type="module" src="./main.js"></script>
+</body></html>
