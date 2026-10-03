@@ -1,12 +1,26 @@
 # vibe / ideas
 
-[English](README.md) · 简体中文
+[English](README.md) · **简体中文**
 
-把灵光一现，做成可以玩的东西。这里收集我们的 vibe ideas：互动实验、小工具，以及一些纯粹好玩的尝试。
+**认真做点不正经的。**
 
-[打开合集](https://huccct.github.io/vibe/)
+甩一坨小时候的软胶，拆掉一张网页，让写下的墨迹自由落体。vibe 是我们用 AI 一起做出来的点子游乐场：把好奇心、童年回忆和灵光一现，变成能亲手玩的网页。
 
-## 案例
+**[进入游乐场 →](https://huccct.github.io/vibe/)** · [丢个新点子](https://github.com/huccct/vibe/issues)
+
+## 今天玩什么？
+
+不知道从哪开始，就去首页抽一张「今日试玩票」。也可以挑个心情：
+
+- **想解压**：[啪叽。](https://huccct.github.io/vibe/toys/wall-slime/)甩一甩软胶，[网页拆迁办](https://huccct.github.io/vibe/toys/demolition/)砸完还能倒放复原。
+- **想回到小时候**：[水中套圈机](https://huccct.github.io/vibe/toys/water-rings/)按到手酸，或者去[活字印刷桌](https://huccct.github.io/vibe/toys/movable-type/)亲手印一张字。
+- **想做点自己的东西**：[重力书法](https://huccct.github.io/vibe/toys/gravity-calligraphy/)写一笔会掉下来的墨，[拼豆图纸生成器](https://huccct.github.io/vibe/toys/bead-pattern/)把图片变成手工图纸。
+
+不用安装，打开浏览器就能探索。摄像头作品需要授权；部分效果依赖 WebGL 或外部资源。
+
+## 点子陈列室
+
+下面收录首页中的作品，按加入时间排列。点击名称查看源码，试玩从[在线合集](https://huccct.github.io/vibe/)进入。
 
 <!-- ideas:start -->
 | 案例 | 简介 | 制作模型 |
@@ -28,32 +42,41 @@
 | [pixel sort](toys/pixel-sort/) | 把像素按亮度排成拉丝故障感。能拖自己的图进去，能下载。 | gpt-5.6-sol（后续整理） |
 <!-- ideas:end -->
 
-制作模型指参与创作的 AI 模型；没有可靠记录的案例标为「待补充」，不以编辑器或技术栈代替模型名称。
+## 关于制作模型
 
-## 本地运行
+每个案例后标注已核实的 AI 模型，保留制作记录中的原始型号。它表示已确认的参与者，不保证涵盖全部历史贡献。
 
-```sh
-pnpm dev
-```
+「后续整理」仅确认该模型参与过页面、主题或资料整理，不代表它创作了最初的作品。代码模型也不等于配图生成模型；查不到的型号不猜。取舍理由与核对依据见 [整理记录](CURATION.md)。
 
-打开 http://localhost:4173。原生 ES modules，无需安装或构建。
+## 在本地玩
 
-## 添加想法
+需要 Node.js 22 或更新版本：
 
 ```sh
-pnpm new my-idea
+node scripts/serve.mjs 4173
 ```
 
-在 `toys/my-idea/` 实现案例，填写 `meta.json` 中的中英文标题、简介、标签，以及 `models` 数组（填写已确认的准确模型名称；未知留空）。保留返回合集的入口。
+打开 [localhost:4173](http://localhost:4173/)。也可以用 `pnpm dev`；没有依赖安装或构建步骤，浏览器直接运行 ES modules。
+
+## 把你的点子放进来
 
 ```sh
-pnpm sync
+node scripts/new-toy.mjs my-idea
 ```
 
-自动更新首页索引与两份 README 案例表。欢迎通过 [Issues](https://github.com/huccct/vibe/issues) 分享新点子。
+在 `toys/my-idea/` 里实现玩法，保留返回合集的入口。更新 `meta.json` 中的中英文标题、简介、标签、配色和日期；在 `models` 数组填写已确认的模型名称，未知则留空。
 
-## 部署与授权
+```sh
+node scripts/sync.mjs
+node scripts/check-gallery.mjs
+```
 
-推送到 `main` 后由 GitHub Pages 自动发布。
+同步命令会更新首页索引和中英文 README 的案例表，不要手改表格。设置 `hidden: true` 可把未准备好的作品移出合集，源码仍保留。
 
-代码采用 [MIT](LICENSE)。第三方模型和素材遵循各自授权，详见案例中的来源说明。
+有点子但还没想好怎么做，也欢迎开 [Issue](https://github.com/huccct/vibe/issues)：说说你想玩的是什么，附上灵感来源就好。
+
+## 发布与授权
+
+推送到 `main` 后，GitHub Actions 检查索引与同步逻辑，再发布到 GitHub Pages。
+
+代码采用 [MIT](LICENSE)。第三方模型、图片等素材遵循各自授权，使用前请查看对应案例的来源说明。

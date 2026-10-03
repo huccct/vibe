@@ -1,12 +1,26 @@
 # vibe / ideas
 
-English · [简体中文](README.zh-CN.md)
+**English** · [简体中文](README.zh-CN.md)
 
-Small ideas, made playable. A collection of interactive experiments, useful tools, and things made just for fun.
+**Serious about playing around.**
 
-[Explore the collection](https://huccct.github.io/vibe/)
+Fling a sticky childhood toy. Demolish a webpage. Let handwritten ink fall off the page. vibe is a playground of ideas we build with AI, turning curiosity, nostalgia, and passing thoughts into things you can actually play with.
 
-## Ideas
+**[Enter the playground →](https://huccct.github.io/vibe/)** · [Share an idea](https://github.com/huccct/vibe/issues)
+
+## What feels fun today?
+
+Start with a random play ticket on the homepage, or pick a mood:
+
+- **Let off some steam:** fling the goo in [Splat!](https://huccct.github.io/vibe/toys/wall-slime/), or break a page and rewind the damage in [Digital Demolition](https://huccct.github.io/vibe/toys/demolition/).
+- **Get hands-on:** pump the buttons in [Water Ring Toss](https://huccct.github.io/vibe/toys/water-rings/), or pull a print at the [Movable Type Press](https://huccct.github.io/vibe/toys/movable-type/).
+- **Make something yours:** write falling ink with [Gravity Calligraphy](https://huccct.github.io/vibe/toys/gravity-calligraphy/), or turn a picture into a craft project with [Bead Pattern Maker](https://huccct.github.io/vibe/toys/bead-pattern/).
+
+No installation needed to explore. Camera experiences need permission; some effects require WebGL or external resources.
+
+## The idea shelf
+
+The homepage collection, newest first. Names below link to source folders; visit the [live collection](https://huccct.github.io/vibe/) to play.
 
 <!-- ideas:start -->
 | Idea | Description | Made with |
@@ -28,32 +42,41 @@ Small ideas, made playable. A collection of interactive experiments, useful tool
 | [pixel sort](toys/pixel-sort/) | Pixels sorted by luminance into smeared glitch streaks. Drop in your own image, download the result. | gpt-5.6-sol (later edits) |
 <!-- ideas:end -->
 
-Model credits name the AI models used to create each idea. Missing records are marked “To be added”; editors and libraries are not model names.
+## About the model credits
 
-## Run locally
+Each entry lists verified AI models using the original identifiers from its production records. These are confirmed contributors, not necessarily an exhaustive history.
 
-```sh
-pnpm dev
-```
+“Later edits” confirms work on the page, theme, or metadata; it does not identify the original creator. Coding credits do not identify image-generation models either. Unknown models stay unknown. See the [curation record](CURATION.md) (in Chinese) for decisions and evidence.
 
-Open http://localhost:4173. Native ES modules; no install or build step.
+## Play locally
 
-## Add an idea
+Use Node.js 22 or newer:
 
 ```sh
-pnpm new my-idea
+node scripts/serve.mjs 4173
 ```
 
-Build in `toys/my-idea/`. Fill in the bilingual title, description, tags, and `models` array in `meta.json`. Use confirmed model names; leave the array empty when unknown. Keep a link back to the collection.
+Open [localhost:4173](http://localhost:4173/). `pnpm dev` works too. No dependency installation or build step: the browser runs native ES modules.
+
+## Add your idea
 
 ```sh
-pnpm sync
+node scripts/new-toy.mjs my-idea
 ```
 
-Updates the gallery registry and both README indexes. New ideas are welcome in [Issues](https://github.com/huccct/vibe/issues).
+Build in `toys/my-idea/` and keep a link back to the collection. Update the bilingual title, description, tags, color, and date in `meta.json`. Put confirmed model names in the `models` array; leave it empty when unknown.
 
-## Deployment and license
+```sh
+node scripts/sync.mjs
+node scripts/check-gallery.mjs
+```
 
-Pushes to `main` deploy automatically to GitHub Pages.
+Sync updates the gallery registry and both README tables. Do not edit those tables by hand. Set `hidden: true` to take an unfinished idea out of the collection while keeping its source.
 
-Code is [MIT](LICENSE). Third-party models and assets retain their own licenses; see the source notes in each idea.
+An idea does not need an implementation plan. Open an [Issue](https://github.com/huccct/vibe/issues), describe what you would like to play, and include its inspiration.
+
+## Publishing and license
+
+Pushes to `main` run the index and sync checks in GitHub Actions, then deploy to GitHub Pages.
+
+Code is [MIT](LICENSE). Third-party models, images, and other assets retain their own licenses; check the source notes in each idea before reusing them.
