@@ -1,6 +1,9 @@
 [
   {
     "slug": "a1-printer",
+    "models": [
+      "gpt-5.6-sol"
+    ],
     "accent": "#86d9ce",
     "added": "2026-08-09",
     "zh": {
@@ -24,6 +27,9 @@
   },
   {
     "slug": "armor-up",
+    "models": [
+      "gpt-5.6-sol"
+    ],
     "accent": "#dce8e3",
     "added": "2026-08-26",
     "zh": {
@@ -47,6 +53,9 @@
   },
   {
     "slug": "bead-pattern",
+    "models": [
+      "gpt-5.6-sol"
+    ],
     "accent": "#ef5b49",
     "added": "2026-08-18",
     "zh": {
@@ -70,6 +79,10 @@
   },
   {
     "slug": "chladni",
+    "models": [
+      "gpt-5.6-sol"
+    ],
+    "modelCredit": "maintenance",
     "accent": "#7cf6ff",
     "added": "2026-08-05",
     "zh": {
@@ -91,6 +104,9 @@
   },
   {
     "slug": "demolition",
+    "models": [
+      "gpt-6-astra"
+    ],
     "accent": "#ed813b",
     "added": "2026-10-02",
     "zh": {
@@ -114,6 +130,10 @@
   },
   {
     "slug": "flow-field",
+    "models": [
+      "gpt-5.6-sol"
+    ],
+    "modelCredit": "maintenance",
     "accent": "#9dff3c",
     "added": "2026-08-05",
     "zh": {
@@ -135,6 +155,9 @@
   },
   {
     "slug": "fly-cube",
+    "models": [
+      "gpt-6-astra"
+    ],
     "accent": "#dbbc7c",
     "added": "2026-09-13",
     "zh": {
@@ -158,6 +181,9 @@
   },
   {
     "slug": "gravity-calligraphy",
+    "models": [
+      "gpt-5.6-sol"
+    ],
     "accent": "#e8c36a",
     "added": "2026-08-06",
     "zh": {
@@ -179,6 +205,9 @@
   },
   {
     "slug": "movable-type",
+    "models": [
+      "gpt-5.6-sol"
+    ],
     "accent": "#c28a52",
     "added": "2026-08-15",
     "zh": {
@@ -202,6 +231,10 @@
   },
   {
     "slug": "pixel-sort",
+    "models": [
+      "gpt-5.6-sol"
+    ],
+    "modelCredit": "maintenance",
     "accent": "#ff5ea8",
     "added": "2026-08-05",
     "zh": {
@@ -223,6 +256,9 @@
   },
   {
     "slug": "shan-hai-beasts",
+    "models": [
+      "gpt-5.6-sol"
+    ],
     "accent": "#d56745",
     "added": "2026-08-07",
     "zh": {
@@ -245,53 +281,10 @@
     }
   },
   {
-    "slug": "skill-kit",
-    "accent": "#caff3d",
-    "added": "2026-08-12",
-    "zh": {
-      "title": "AI Skills 小白装备包",
-      "description": "不知道 Skill 是什么也没关系。选一件你想让 AI 做的事，复制，安装，直接开用。",
-      "tags": [
-        "AI工具",
-        "Skills",
-        "小白指南"
-      ]
-    },
-    "en": {
-      "title": "AI Skills Starter Kit",
-      "description": "Five useful agent skills, explained without jargon and ready to copy, install, and use.",
-      "tags": [
-        "AI tools",
-        "Skills",
-        "starter guide"
-      ]
-    }
-  },
-  {
-    "slug": "tiananmen",
-    "accent": "#aa332a",
-    "added": "2026-10-01",
-    "zh": {
-      "title": "天安门 · 祖国生日快乐",
-      "description": "使用现成天安门模型，走近城楼、彩画斗拱与金水桥，切换视角、昼夜和国庆烟花。模型仅限非商业使用。",
-      "tags": [
-        "3D",
-        "建筑模型",
-        "国庆"
-      ]
-    },
-    "en": {
-      "title": "Tiananmen · A Birthday Postcard",
-      "description": "Explore an imported Tiananmen model, painted brackets and Jinshui bridges, with day/night views and National Day fireworks. Model for non-commercial use only.",
-      "tags": [
-        "3D",
-        "architecture",
-        "National Day"
-      ]
-    }
-  },
-  {
     "slug": "wall-slime",
+    "models": [
+      "gpt-6-astra"
+    ],
     "accent": "#dca344",
     "added": "2026-10-03",
     "zh": {
@@ -315,6 +308,9 @@
   },
   {
     "slug": "water-rings",
+    "models": [
+      "gpt-6-astra"
+    ],
     "accent": "#f6c524",
     "added": "2026-09-14",
     "zh": {
@@ -338,6 +334,9 @@
   },
   {
     "slug": "west-lake",
+    "models": [
+      "gpt-6-astra"
+    ],
     "accent": "#547763",
     "added": "2026-09-12",
     "zh": {
@@ -361,6 +360,9 @@
   },
   {
     "slug": "worry-paper-mill",
+    "models": [
+      "gpt-5.6-sol"
+    ],
     "accent": "#a33b32",
     "added": "2026-08-28",
     "zh": {

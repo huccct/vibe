@@ -42,6 +42,10 @@ for (const entry of entries) {
   }
   if (missing.length) throw new Error(`toys/${entry.name}/meta.json 缺字段：${missing.join(', ')}`)
 
+  if (meta.models !== undefined && (!Array.isArray(meta.models) || meta.models.some((model) => typeof model !== 'string' || !model.trim()))) {
+    throw new Error(`toys/${entry.name}/meta.json models 必须是非空模型名称的数组`)
+  }
+
   toys.push({ slug: entry.name, ...meta })
 }
 
@@ -49,3 +53,15 @@ toys.sort((a, b) => a.slug.localeCompare(b.slug))
 
 await writeFile(join(toysDir, 'registry.json'), `${JSON.stringify(toys, null, 2)}\n`)
 console.log(`registry.json ← ${toys.length} 个 toy：${toys.map((t) => t.slug).join(', ')}`)
+
+// ponytail: keep the two README indexes in sync with the same metadata as the gallery.
+for (const lang of LANGS) {
+  const path = join(root, lang === 'zh' ? 'README.zh-CN.md' : 'README.md')
+  const document = await readFile(path, 'utf8')
+  const header = lang === 'zh' ? '| 案例 | 简介 | 制作模型 |' : '| Idea | Description | Made with |'
+  const escape = (text) => text.replaceAll('|', '\\|').replaceAll('\n', ' ')
+  const rows = [...toys].sort((a, b) => b.added.localeCompare(a.added) || a[lang].title.localeCompare(b[lang].title)).map((toy) =>
+    `| [${escape(toy[lang].title)}](toys/${toy.slug}/) | ${escape(toy[lang].description)} | ${escape(toy.models?.length ? toy.models.join(' · ') + (toy.modelCredit === 'maintenance' ? (lang === 'zh' ? '（后续整理）' : ' (later edits)') : '') : lang === 'zh' ? '待补充' : 'To be added')} |`
+  )
+  await writeFile(path, document.replace(/<!-- ideas:start -->[\s\S]*?<!-- ideas:end -->/, `<!-- ideas:start -->\n${header}\n| --- | --- | --- |\n${rows.join('\n')}\n<!-- ideas:end -->`))
+}

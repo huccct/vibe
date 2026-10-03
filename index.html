@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>vibe · 互动作品合集</title>
+    <title>vibe · idea 合集</title>
     <meta
       name="description"
-      content="vibe，互动作品合集。把好玩的想法做出来，点开就能玩。"
+      content="vibe idea 合集。把灵光一现，做成可以玩的东西。"
     />
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
     <script src="src/shared/theme.js"></script>
@@ -16,13 +16,25 @@
   <body>
     <main class="gallery">
       <header class="gallery-head">
-        <h1><img src="assets/logo.svg" alt="" /><span id="series-name">vibe</span></h1>
+        <h1><img src="assets/logo.svg" alt="" /><span id="series-name">vibe<span class="title-note"> / ideas</span></span></h1>
         <!-- 文案由 gallery.js 按当前语言填，见 src/shared/i18n.js -->
         <p id="tagline"></p>
         <div class="gallery-lang" id="lang"></div>
       </header>
 
-      <div class="grid" id="grid"></div>
+      <section class="playground" aria-labelledby="play-title">
+        <div class="invitation">
+          <h2 id="play-title"></h2>
+          <p id="play-note"></p>
+        </div>
+        <div class="ticket">
+          <div class="ticket-top"><span id="ticket-label"></span><svg aria-hidden="true" width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="3" y="3" width="22" height="22" rx="5" stroke="currentColor" stroke-width="1.5"/><g fill="currentColor"><circle cx="9" cy="9" r="1.5"/><circle cx="19" cy="9" r="1.5"/><circle cx="14" cy="14" r="1.5"/><circle cx="9" cy="19" r="1.5"/><circle cx="19" cy="19" r="1.5"/></g></svg></div>
+          <div id="ticket-result" aria-live="polite" aria-atomic="true"></div>
+          <div class="ticket-actions"><a id="play-link" hidden></a><button id="shuffle" type="button" disabled></button></div>
+        </div>
+      </section>
+      <div class="collection-head"><h2 id="collection-title"></h2><span id="collection-note"></span></div>
+      <div class="grid" id="grid" aria-live="polite"></div>
 
       <footer class="gallery-foot">
         <span id="count"></span>

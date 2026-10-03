@@ -22,7 +22,8 @@ assert.ok(model.materials.some(m=>m.name.startsWith('Facade left inscription')),
 const report=JSON.parse(await readFile(new URL('assets/imported-model-check.json',root),'utf8'));
 assert.equal(report.assetId,'A127140214');assert.ok(report.repairedMaterials>=100,'V-Ray texture links repaired');
 const registry=JSON.parse(await readFile(new URL('../registry.json',root),'utf8'));
-assert.equal(registry.filter(t=>t.slug==='tiananmen').length,1,'one gallery entry');
+const meta=JSON.parse(await readFile(new URL('meta.json',root),'utf8'));
+assert.equal(registry.filter(t=>t.slug==='tiananmen').length,meta.hidden?0:1,'gallery follows visibility metadata');
 const page=await readFile(new URL('index.html',root),'utf8');
 for(const id of ['scene','night','detail','aerial','orbit','reset','fireworks','save'])assert.ok(page.includes(`id="${id}"`),`control ${id}`);
 console.log(`Imported model, embedded textures, bounds, indices and gallery passed (${(glb.length/1024/1024).toFixed(1)} MB).`);

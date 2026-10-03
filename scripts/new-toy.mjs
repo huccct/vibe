@@ -90,6 +90,7 @@ function meta(slug, today) {
     {
       accent: '#9dff3c',
       added: today,
+      models: [],
       zh: {
         title: name,
         description: 'TODO 一句话说清这是什么',

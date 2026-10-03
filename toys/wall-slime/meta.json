@@ -1,4 +1,5 @@
 {
+  "models": ["gpt-6-astra"],
   "accent": "#dca344",
   "added": "2026-10-03",
   "zh": {

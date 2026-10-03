@@ -27,12 +27,15 @@ jobs:
         with:
           node-version: 22
 
-      # 没有构建步骤，只需确认 registry.json 和各 meta.json 是一致的
+      - name: check gallery sync
+        run: node scripts/check-gallery.mjs
+
+      # 没有构建步骤，确认索引与各 meta.json 一致
       - name: sync registry
         run: node scripts/sync.mjs
 
       - name: fail if registry is stale
-        run: git diff --exit-code toys/registry.json
+        run: git diff --exit-code toys/registry.json README.md README.zh-CN.md
 
       - uses: actions/configure-pages@v5
 

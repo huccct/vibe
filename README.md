@@ -1,106 +1,59 @@
-<p align="center">
-  <img src="assets/banner.svg" alt="vibe — a playground of small web toys" width="100%">
-</p>
+# vibe / ideas
 
-<p align="center">
-  <strong>English</strong> · <a href="README.zh-CN.md">简体中文</a>
-</p>
+English · [简体中文](README.zh-CN.md)
 
-My playground. Small toys you can just open and play with — no install or build step.
+Small ideas, made playable. A collection of interactive experiments, useful tools, and things made just for fun.
 
-**→ [Play online](https://huccct.github.io/vibe/)**
+[Explore the collection](https://huccct.github.io/vibe/)
 
-## What's in here
+## Ideas
 
-| | Toy | What it does |
+<!-- ideas:start -->
+| Idea | Description | Made with |
 | --- | --- | --- |
-| 🧰 | [AI Skills Starter Kit](toys/skill-kit/) | Five useful agent skills, explained without jargon and ready to install |
-| 🖨️ | [Bambu Lab A1 Print Desk](toys/a1-printer/) | A detailed Three.js A1 printing sculptural samples layer by layer |
-| 🧱 | [Movable Type Press](toys/movable-type/) | Set mirrored wooden type, roll the ink, pull the press, and peel away the print |
-| 🐉 | [Mythical Beast Field Guide](toys/shan-hai-beasts/) | Turn a page and meet a beast no ancient book remembered |
-| 🖌️ | [Gravity Calligraphy](toys/gravity-calligraphy/) | Ink refuses to stay on the page. Release a stroke and let gravity and wind take over |
-| 🌊 | [flow field](toys/flow-field/) | A few thousand particles drift along a noise field, trails piling up into streamlines. Your cursor pushes them around |
-| 🔉 | [chladni](toys/chladni/) | Nodal lines of a standing wave equation. Twelve thousand grains of sand find the spots that don't vibrate and settle there |
-| 🩸 | [pixel sort](toys/pixel-sort/) | Pixels sorted by luminance into smeared glitch streaks. Drop in your own image, download the result |
+| [Splat!](toys/wall-slime/) | That sticky childhood toy. Grab it, fling it against a wall, and watch it stretch, peel, and plop down. | gpt-6-astra |
+| [Digital Demolition](toys/demolition/) | Turn a public website into a destructible arcade level. Run, fly, shoot and throw grenades, then rewind the damage. | gpt-6-astra |
+| [Water Ring Toss](toys/water-rings/) | A handheld water ring toy with two pumps and an underwater backdrop. Press either button and tilt the toy to land rings on the pegs. | gpt-6-astra |
+| [Zhang Heng’s Seismoscope](toys/fly-cube/) | Eight dragons, eight toads. Trigger a vibration, watch a bronze ball fall, and reveal an illustrative internal mechanism. | gpt-6-astra |
+| [West Lake · Leifeng Pagoda](toys/west-lake/) | A reference-based reconstruction of Leifeng Pagoda, using official dimensions and public terrain data. | gpt-6-astra |
+| [Night Emotion Data Office](toys/worry-paper-mill/) | Register a worry, encode it, and press it into a one-of-a-kind pixel paper record. | gpt-5.6-sol |
+| [RIPPLE MIRROR](toys/armor-up/) | Move your hands to ripple and twist your live camera reflection. | gpt-5.6-sol |
+| [Bead Pattern Maker](toys/bead-pattern/) | Turn an image into an editable, printable fuse-bead pattern with a color and quantity list. | gpt-5.6-sol |
+| [Movable Type Press](toys/movable-type/) | Set mirrored wooden type, roll the ink, pull the press, and peel away a print whose imperfections are entirely your own. | gpt-5.6-sol |
+| [Bambu Lab A1 Print Desk](toys/a1-printer/) | An unofficial Three.js A1 study at work. Orbit around it as a ripple vase grows layer by layer. | gpt-5.6-sol |
+| [Mythical Beast Field Guide](toys/shan-hai-beasts/) | Turn a page and meet a beast no ancient book remembered. | gpt-5.6-sol |
+| [Gravity Calligraphy](toys/gravity-calligraphy/) | Ink refuses to stay on the page. Release a stroke and let gravity and wind take over. | gpt-5.6-sol |
+| [chladni](toys/chladni/) | Nodal lines solved out of the standing wave equation. Twelve thousand grains of sand find the spots that don't vibrate and settle there. | gpt-5.6-sol (later edits) |
+| [flow field](toys/flow-field/) | A few thousand particles drift along a noise field, trails piling up into streamlines. Your cursor pushes them around. | gpt-5.6-sol (later edits) |
+| [pixel sort](toys/pixel-sort/) | Pixels sorted by luminance into smeared glitch streaks. Drop in your own image, download the result. | gpt-5.6-sol (later edits) |
+<!-- ideas:end -->
 
-## Got an idea?
+Model credits name the AI models used to create each idea. Missing records are marked “To be added”; editors and libraries are not model names.
 
-This is a personal playground. I add things as they catch my interest — no attempt at coverage, no promises about maintenance pace.
+## Run locally
 
-That said, **issues with ideas are very welcome**. Seen a visual effect, an algorithm, a physical phenomenon that would make a fun little toy? Tell me about it. Want to build it yourself? See [Adding a toy](#adding-a-toy).
-
-## Running it
-
-```bash
+```sh
 pnpm dev
 ```
 
-Open http://localhost:4173 .
+Open http://localhost:4173. Native ES modules; no install or build step.
 
-No install or build step — the browser runs native ES modules directly, with the occasional library vendored alongside the toys. `pnpm dev` runs [scripts/serve.mjs](scripts/serve.mjs), a ~50-line static server on Node's built-ins (ES modules can't load from `file://`, so a server is required). It sends `no-store`, which matters more than it sounds: servers that answer `304` will happily hand the browser a stale ES module or `registry.json`, and you end up debugging a page that's running half your edits.
+## Add an idea
 
-## Adding a toy
-
-```bash
-pnpm new wave-clock
+```sh
+pnpm new my-idea
 ```
 
-That generates `toys/wave-clock/` with a working skeleton (a dot going in circles). Write your idea in `main.js`, fill in `meta.json`, then:
+Build in `toys/my-idea/`. Fill in the bilingual title, description, tags, and `models` array in `meta.json`. Use confirmed model names; leave the array empty when unknown. Keep a link back to the collection.
 
-```bash
+```sh
 pnpm sync
 ```
 
-`sync` scans every `toys/*/meta.json` and rolls them up into `toys/registry.json`, which the gallery homepage reads. **Run it after adding a toy** — CI checks that the file is current and fails if it isn't.
+Updates the gallery registry and both README indexes. New ideas are welcome in [Issues](https://github.com/huccct/vibe/issues).
 
-`meta.json` keeps the language-independent fields at the top level and the copy in a block per language. Both languages are required — the gallery has a toggle, and a missing one would render as `undefined`, so `sync` rejects it instead:
+## Deployment and license
 
-```json
-{
-  "accent": "#ffb347",
-  "added": "2026-08-06",
-  "zh": {
-    "title": "wave clock",
-    "description": "一句话说清这是什么",
-    "tags": ["互动"]
-  },
-  "en": {
-    "title": "wave clock",
-    "description": "One line on what this is",
-    "tags": ["interactive"]
-  }
-}
-```
+Pushes to `main` deploy automatically to GitHub Pages.
 
-Three conventions, that's it: one directory per toy, a `meta.json` is required, and keep a link back to the gallery. Everything else is up to you — use a different stack if you want, as long as `toys/<slug>/index.html` opens.
-
-## Layout
-
-```
-index.html            gallery homepage
-src/gallery/          homepage styles and rendering
-src/shared/           shared across every toy
-  stage.js              canvas boilerplate: DPR scaling, resize, animation loop, pointer tracking
-  noise.js              2D gradient noise + fBm
-  i18n.js               language state (localStorage) + the toggle button
-  vibe.css              dark background, mono type, control styles
-toys/<slug>/
-  index.html            the page (top bar + controls + stage)
-  main.js               the logic
-  meta.json             colors, date, and copy per language
-toys/registry.json    generated by pnpm sync — don't edit by hand
-scripts/serve.mjs     the dev server behind pnpm dev
-scripts/banner.mjs    regenerates the banner above using this repo's own noise.js
-```
-
-`stage.js` and `noise.js` are written from scratch with no packages behind them, so lifting them out for your own use is fine.
-
-## Deploying
-
-Pushes to `main` publish to GitHub Pages automatically (see [deploy.yml](.github/workflows/deploy.yml)).
-
-There's no build output — the whole repo is served as a static site. Every path is relative, so it works both under a subpath (`/vibe/`) and at a domain root.
-
-## License
-
-[MIT](LICENSE). Take whatever you like.
+Code is [MIT](LICENSE). Third-party models and assets retain their own licenses; see the source notes in each idea.

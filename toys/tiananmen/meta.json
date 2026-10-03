@@ -1,4 +1,6 @@
 {
+  "models": ["gpt-6.1-sol"],
+  "hidden": true,
   "accent": "#aa332a",
   "added": "2026-10-01",
   "zh": {

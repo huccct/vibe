@@ -1,4 +1,6 @@
 {
+  "models": ["gpt-5.6-sol"],
+  "modelCredit": "maintenance",
   "accent": "#ff5ea8",
   "added": "2026-08-05",
   "zh": {
