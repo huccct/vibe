@@ -291,6 +291,29 @@
     }
   },
   {
+    "slug": "wall-slime",
+    "accent": "#dca344",
+    "added": "2026-10-03",
+    "zh": {
+      "title": "啪叽。",
+      "description": "小时候往墙上甩的那坨软胶。抓起来、甩出去，看它黏住、拉长，再慢慢掉下来。",
+      "tags": [
+        "童年",
+        "软胶",
+        "解压"
+      ]
+    },
+    "en": {
+      "title": "Splat!",
+      "description": "That sticky childhood toy. Grab it, fling it against a wall, and watch it stretch, peel, and plop down.",
+      "tags": [
+        "nostalgia",
+        "slime",
+        "play"
+      ]
+    }
+  },
+  {
     "slug": "water-rings",
     "accent": "#f6c524",
     "added": "2026-09-14",
