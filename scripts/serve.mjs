@@ -6,6 +6,7 @@
  *
  *   node scripts/serve.mjs [port]
  */
+import { handleDemolitionRequest } from '../toys/demolition/api.mjs';
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { extname, join, normalize, dirname, sep } from 'node:path';
@@ -28,7 +29,10 @@ const MIME = {
 };
 
 createServer(async (req, res) => {
-  const urlPath = decodeURIComponent((req.url ?? '/').split('?')[0]);
+  if (await handleDemolitionRequest(req, res)) return;
+  let urlPath;
+  try { urlPath = decodeURIComponent((req.url ?? '/').split('?')[0]); }
+  catch { res.writeHead(400).end('bad path'); return; }
   let rel = normalize(urlPath.replace(/^\/+/, ''));
   // 目录请求补 index.html，让 / 和 /toys/chladni/ 这种能直接开
   if (rel === '' || rel === '.' || urlPath.endsWith('/')) rel = join(rel, 'index.html');

@@ -90,6 +90,29 @@
     }
   },
   {
+    "slug": "demolition",
+    "accent": "#ed813b",
+    "added": "2026-10-02",
+    "zh": {
+      "title": "网页拆迁办",
+      "description": "输入网址，把网页变成像素拆迁关卡。移动、飞行、射击、扔手雷，再倒放复原。",
+      "tags": [
+        "街机",
+        "解压",
+        "网页"
+      ]
+    },
+    "en": {
+      "title": "Digital Demolition",
+      "description": "Turn a public website into a destructible arcade level. Run, fly, shoot and throw grenades, then rewind the damage.",
+      "tags": [
+        "arcade",
+        "stress relief",
+        "websites"
+      ]
+    }
+  },
+  {
     "slug": "flow-field",
     "accent": "#9dff3c",
     "added": "2026-08-05",
