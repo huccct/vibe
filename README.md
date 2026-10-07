@@ -12,7 +12,7 @@ Fling a sticky childhood toy. Demolish a webpage. Let handwritten ink fall off t
 
 Start with a random play ticket on the homepage, or pick a mood:
 
-- **Let off some steam:** fling the goo in [Splat!](https://huccct.github.io/vibe/toys/wall-slime/), or break a page and rewind the damage in [Digital Demolition](https://huccct.github.io/vibe/toys/demolition/).
+- **Let off some steam:** fling a sticky wall-crawler in [Splat!](https://huccct.github.io/vibe/toys/wall-slime/), or break a page and rewind the damage in [Digital Demolition](https://huccct.github.io/vibe/toys/demolition/).
 - **Get hands-on:** pump the buttons in [Water Ring Toss](https://huccct.github.io/vibe/toys/water-rings/), or pull a print at the [Movable Type Press](https://huccct.github.io/vibe/toys/movable-type/).
 - **Make something yours:** write falling ink with [Gravity Calligraphy](https://huccct.github.io/vibe/toys/gravity-calligraphy/), or turn a picture into a craft project with [Bead Pattern Maker](https://huccct.github.io/vibe/toys/bead-pattern/).
 
@@ -25,7 +25,7 @@ The homepage collection, newest first. Names below link to source folders; visit
 <!-- ideas:start -->
 | Idea | Description | Made with |
 | --- | --- | --- |
-| [Splat!](toys/wall-slime/) | That sticky childhood toy. Grab it, fling it against a wall, and watch it stretch, peel, and plop down. | gpt-6-astra |
+| [Splat!](toys/wall-slime/) | A box of nostalgic sticky toys: Spider-Man, a gecko, a soft star and a frog. Fling all four onto one wall, adjust their stickiness, and see who holds on longest. | gpt-6-astra |
 | [Digital Demolition](toys/demolition/) | Turn a public website into a destructible arcade level. Run, fly, shoot and throw grenades, then rewind the damage. | gpt-6-astra |
 | [Water Ring Toss](toys/water-rings/) | A handheld water ring toy with two pumps and an underwater backdrop. Press either button and tilt the toy to land rings on the pegs. | gpt-6-astra |
 | [Zhang Heng’s Seismoscope](toys/fly-cube/) | Eight dragons, eight toads. Trigger a vibration, watch a bronze ball fall, and reveal an illustrative internal mechanism. | gpt-6-astra |

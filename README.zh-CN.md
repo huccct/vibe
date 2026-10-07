@@ -12,7 +12,7 @@
 
 不知道从哪开始，就去首页抽一张「今日试玩票」。也可以挑个心情：
 
-- **想解压**：[啪叽。](https://huccct.github.io/vibe/toys/wall-slime/)甩一甩软胶，[网页拆迁办](https://huccct.github.io/vibe/toys/demolition/)砸完还能倒放复原。
+- **想解压**：[啪叽。](https://huccct.github.io/vibe/toys/wall-slime/)甩一甩粘墙蜘蛛侠，[网页拆迁办](https://huccct.github.io/vibe/toys/demolition/)砸完还能倒放复原。
 - **想回到小时候**：[水中套圈机](https://huccct.github.io/vibe/toys/water-rings/)按到手酸，或者去[活字印刷桌](https://huccct.github.io/vibe/toys/movable-type/)亲手印一张字。
 - **想做点自己的东西**：[重力书法](https://huccct.github.io/vibe/toys/gravity-calligraphy/)写一笔会掉下来的墨，[拼豆图纸生成器](https://huccct.github.io/vibe/toys/bead-pattern/)把图片变成手工图纸。
 
@@ -25,7 +25,7 @@
 <!-- ideas:start -->
 | 案例 | 简介 | 制作模型 |
 | --- | --- | --- |
-| [啪叽。](toys/wall-slime/) | 小时候往墙上甩的那坨软胶。抓起来、甩出去，看它黏住、拉长，再慢慢掉下来。 | gpt-6-astra |
+| [啪叽。](toys/wall-slime/) | 校门口的粘墙玩具盒。蜘蛛侠、小壁虎、软海星和弹弹蛙，一起甩上墙，调调各自的黏糊度，看谁粘得最久。 | gpt-6-astra |
 | [网页拆迁办](toys/demolition/) | 输入网址，把网页变成像素拆迁关卡。移动、飞行、射击、扔手雷，再倒放复原。 | gpt-6-astra |
 | [水中套圈机](toys/water-rings/) | 双按钮掌上水机。按下左右水泵，让彩色小圈在海底背景前翻滚，轻轻倾斜机身，把圈套上柱子。 | gpt-6-astra |
 | [候风地动仪](toys/fly-cube/) | 八龙衔珠，八蟾承接。触发八方震动，透视内部机构，让课本里的地动仪动起来。演示性复原。 | gpt-6-astra |

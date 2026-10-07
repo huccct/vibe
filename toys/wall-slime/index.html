@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#dce5da">
-  <title>啪叽。甩墙上的一坨 · vibe</title>
+  <title>啪叽。校门口的粘墙玩具 · vibe</title>
   <link rel="icon" href="../../assets/logo.svg">
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="../../src/shared/series.css">
@@ -20,31 +20,37 @@
         <button id="sound" aria-pressed="false" aria-label="打开音效">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4Z"/><path class="sound-waves" d="M15 8c2 2 2 6 0 8m3-11c4 4 4 10 0 14"/><path class="sound-off" d="m16 9 5 6m0-6-5 6"/></svg>
         </button>
-        <button id="reset" title="重新揉一坨（R）">重新揉</button>
+        <button id="reset" title="四只重新摆好（R）">重来</button>
       </div>
     </header>
     <div class="intro">
       <h1>啪叽<span>。</span></h1>
-      <p>小时候，往墙上甩的那一坨。</p>
+      <p>四只小玩具，一起霸占这面墙。</p>
     </div>
     <div class="play-hint" aria-hidden="true">
-      <span id="hint">抓住它，甩到墙上。</span>
-      <span id="subhint">黏住、拉长，再慢慢掉下来。</span>
+      <span id="hint">随便抓一只，甩到墙上。</span>
+      <span id="subhint">也可以一起甩，看谁粘得最久。</span>
     </div>
     <output id="status" role="status" aria-live="polite">这次不会被骂。</output>
     <footer>
+      <div class="toy-picker" role="group" aria-label="选择要调黏度或换色的玩具">
+        <button data-toy="spider" aria-pressed="true">蜘蛛侠</button>
+        <button data-toy="gecko" aria-pressed="false">小壁虎</button>
+        <button data-toy="star" aria-pressed="false">软海星</button>
+        <button data-toy="frog" aria-pressed="false">弹弹蛙</button>
+      </div>
       <div class="controls">
         <fieldset class="colors">
-          <legend class="sr-only">软胶颜色</legend>
-          <button class="swatch selected" style="--swatch:#ef952b" data-color="#ed881d" aria-label="橘子汽水色" aria-pressed="true"></button>
+          <legend class="sr-only">玩具配色</legend>
+          <button class="swatch selected" style="--swatch:#c93821" data-color="#c93821" aria-label="经典红色" aria-pressed="true"></button>
           <button class="swatch" style="--swatch:#a2be50" data-color="#98bf37" aria-label="青苹果色" aria-pressed="false"></button>
           <button class="swatch" style="--swatch:#e598a3" data-color="#e687a0" aria-label="草莓牛奶色" aria-pressed="false"></button>
           <button class="swatch" style="--swatch:#84aec3" data-color="#6bafd0" aria-label="蓝苏打色" aria-pressed="false"></button>
         </fieldset>
-        <label class="stickiness" for="sticky">黏糊度<input id="sticky" type="range" min="0" max="100" value="55"><output id="sticky-value" for="sticky">刚刚好</output></label>
-        <button id="throw">帮我甩一下 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M6 5h13v13"/></svg></button>
+        <label class="stickiness" for="sticky">黏糊度<input id="sticky" aria-label="蜘蛛侠的黏糊度" type="range" min="0" max="100" value="85"><output id="sticky-value" for="sticky">85%</output></label>
+        <button id="throw">一起甩 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M6 5h13v13"/></svg></button>
       </div>
-      <p class="keyboard-hint">鼠标 / 手指抓住甩 · 空格也能甩 · R 重新揉</p>
+      <p class="keyboard-hint">鼠标 / 手指抓住甩 · 空格一起甩 · R 重来</p>
     </footer>
   </main>
   <script type="module" src="./main.js"></script>

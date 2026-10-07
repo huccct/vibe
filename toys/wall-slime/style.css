@@ -87,3 +87,11 @@ input[type=range] { width: 86px; accent-color: #62764e; cursor: pointer; margin:
   .play-hint { top: 62%; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
+
+.toy-picker { display: flex; gap: 4px; padding: 0 8px; background: #f3f4eb; border-radius: 12px; pointer-events: auto; }
+.toy-picker button { min-width: 68px; min-height: 44px; padding: 8px 12px; font-size: 13px; border-bottom: 2px solid transparent; }
+.toy-picker button[aria-pressed=true] { border-bottom-color: #344e3c; font-weight: 600; }
+.toy-picker button:hover { color: #162b1e; background: #dfe6d5; }
+#status { bottom: 198px; }
+@media (max-width: 620px) { #status { bottom: 230px; } .play-hint { top: 22%; } }
+@media (max-height: 700px) { .keyboard-hint { display: none; } .play-hint { display: none; } }

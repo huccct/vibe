@@ -1,6 +1,7 @@
+import { createStarGeometry } from './star.js';
 import * as T from '../../src/vendor/three.module.min.js';
 import { loop } from '../../src/shared/stage.js';
-import { createSlime, grab, release, toss, step, surfacePoint, RADIUS, FLOOR } from './physics.js';
+import { createSlime, grab, release, tossTogether, step, resolveToyContacts, deformPoint, bindPoint, bindLimbPoint, TOYS, RADIUS, FLOOR } from './physics.js';
 
 const host = document.querySelector('#stage');
 const status = document.querySelector('#status');
@@ -22,7 +23,7 @@ renderer.shadowMap.type = T.PCFShadowMap;
 renderer.toneMapping = T.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.05;
 const canvas = renderer.domElement;
-canvas.setAttribute('aria-label', '抓住软胶后拖动并松手，甩到墙上。也可以用下方按钮或空格键。');
+canvas.setAttribute('aria-label', '抓住玩具后拖动并松手，甩到墙上。也可以用下方按钮或空格键。');
 canvas.setAttribute('role', 'img');
 host.prepend(canvas);
 canvas.addEventListener('webglcontextlost', event => {
@@ -88,49 +89,183 @@ for (let i = 0; i < 4; i++) {
   slat.rotation.z = -0.35; slat.castShadow = true;
 }
 
-const slimeGeometry = new T.SphereGeometry(1, 64, 48);
-const originals = Float32Array.from(slimeGeometry.attributes.position.array);
-const jelly = new T.MeshPhysicalMaterial({
-  color: '#ed881d', roughness: 0.18, metalness: 0, clearcoat: 1,
-  clearcoatRoughness: 0.12, transmission: 0.14, thickness: 0.65, ior: 1.38,
-  envMapIntensity: 1.35,
-});
-const blob = mesh(slimeGeometry, jelly, [0, 0, 0]);
-blob.castShadow = true; blob.receiveShadow = true; blob.frustumCulled = false;
-const eyeWhite = new T.MeshPhysicalMaterial({ color: '#fff7db', roughness: 0.23, clearcoat: 0.8 });
-const eyeBlack = new T.MeshPhysicalMaterial({ color: '#232721', roughness: 0.17, clearcoat: 1 });
-const eyeGeometry = new T.SphereGeometry(0.108, 24, 16);
-const pupilGeometry = new T.SphereGeometry(1, 20, 14);
-const eyes = [-1, 1].map(side => {
-  const group = new T.Group(); scene.add(group);
-  const white = mesh(eyeGeometry, eyeWhite, [0, 0, 0], group); white.scale.z = 0.64;
-  const pupil = mesh(pupilGeometry, eyeBlack, [0, 0, 0.068], group);
-  pupil.scale.set(0.042, 0.057, 0.032);
-  return { group, pupil, side };
-});
-const mouth = mesh(new T.TorusGeometry(0.044, 0.011, 8, 24, Math.PI), eyeBlack, [0, 0, 0]);
-mouth.rotation.z = Math.PI;
+const blob = new T.Group(); scene.add(blob);
 
-let slime = createSlime();
-let pointer = null, samples = [], lastPhase = '', lastWallHits = 0, lastFloorHits = 0;
+const mold = document.createElement('canvas'); mold.width = mold.height = 128;
+const ink = mold.getContext('2d');
+ink.fillStyle = '#929292'; ink.fillRect(0, 0, 128, 128);
+ink.strokeStyle = '#555'; ink.lineWidth = 2;
+for (let i = 0; i <= 128; i += 16) {
+  ink.beginPath(); ink.moveTo(i, 0); ink.lineTo(i, 128); ink.stroke();
+  ink.beginPath(); ink.moveTo(0, i); ink.lineTo(128, i); ink.stroke();
+}
+const relief = new T.CanvasTexture(mold);
+relief.wrapS = relief.wrapT = T.RepeatWrapping;
+const blue = new T.MeshStandardMaterial({ color: '#073cb1', roughness: 0.6, bumpMap: relief, bumpScale: 0.004, envMapIntensity: 0.65 });
+const red = new T.MeshStandardMaterial({ color: '#b62716', roughness: 0.56 });
+const jellyTemplate = new T.MeshPhysicalMaterial({ color: '#c93821', roughness: 0.43, clearcoat: 0.18, transmission: 0.08, thickness: 0.12 });
+const rubberTemplate = new T.MeshPhysicalMaterial({ color: '#98bf37', roughness: 0.42, clearcoat: 0.3, transmission: 0.10, thickness: 0.12 });
+const eyeWhite = new T.MeshStandardMaterial({ color: '#fff5db', roughness: 0.5 });
+const pupil = new T.MeshStandardMaterial({ color: '#20372e', roughness: 0.4 });
+const sphere = new T.SphereGeometry(1, 24, 16);
+const emboss = new T.MeshStandardMaterial({ color: '#083697', roughness: 0.55 });
+const toyColors = { spider: '#c93821', gecko: '#98bf37', star: '#e687a0', frog: '#6bafd0' };
+function buildToy(kind) {
+  const figure = new T.Group(); blob.add(figure);
+  figure.userData.kind = kind;
+  const softParts = [];
+  const rubber = rubberTemplate.clone(), jelly = jellyTemplate.clone();
+function oval(material, position, scale) {
+  const part = mesh(sphere, material, position, figure); part.scale.set(...scale);
+  part.castShadow = true; part.receiveShadow = true; return part;
+}
+// Curved, tapered rest meshes are deformed together below.
+function limb(points, radii, material = blue) {
+  const curve = new T.CatmullRomCurve3(points.map(p => new T.Vector3(...p)));
+  const geometry = new T.TubeGeometry(curve, 32, 1, 12, false);
+  const vertices = geometry.attributes.position;
+  for (let i = 0; i <= 32; i++) {
+    const t = i / 32, center = curve.getPointAt(t);
+    const f = t * (radii.length - 1), k = Math.min(Math.floor(f), radii.length - 2);
+    const r = T.MathUtils.lerp(radii[k], radii[k + 1], f - k);
+    for (let j = 0; j <= 12; j++) {
+      const n = i * 13 + j;
+      vertices.setXYZ(n, center.x + (vertices.getX(n) - center.x) * r,
+        center.y + (vertices.getY(n) - center.y) * r,
+        center.z + (vertices.getZ(n) - center.z) * r * 0.78);
+    }
+  }
+  geometry.computeVertexNormals();
+  const part = mesh(geometry, material, [0, 0, 0], figure);
+  part.castShadow = true; part.receiveShadow = true;
+  return part;
+}
+  figure.rotation.set(0, 0, kind === 'spider' ? Math.PI : 0);
+  rubber.color.set(toyColors[kind]); jelly.color.set(toyColors.spider);
+  if (kind === 'spider') {
+const torso = mesh(new T.LatheGeometry([
+  new T.Vector2(0.075, -0.04), new T.Vector2(0.10, 0.02),
+  new T.Vector2(0.095, 0.12), new T.Vector2(0.13, 0.24),
+  new T.Vector2(0.145, 0.32), new T.Vector2(0.115, 0.38),
+  new T.Vector2(0.045, 0.415), new T.Vector2(0.035, 0.43),
+], 32), blue, [0, 0, 0], figure);
+torso.userData.boneIndex = 0;
+torso.scale.z = 0.5; torso.castShadow = torso.receiveShadow = true;
+oval(blue, [0, 0.50, 0], [0.087, 0.117, 0.061]).userData.boneIndex = 0;
+const belt = mesh(new T.CylinderGeometry(0.103, 0.098, 0.078, 24), red, [0, 0.025, 0], figure);
+belt.userData.boneIndex = 0;
+belt.scale.z = 0.58; belt.rotation.z = -0.08; belt.castShadow = true;
+for (const side of [-1, 1]) {
+  limb([[side * 0.115, 0.34, 0], [side * 0.225, 0.44, 0.005],
+    [side * 0.295, 0.56, 0], [side * 0.28, 0.72, -0.015]], [0.057, 0.045, 0.04, 0.032]).userData.limbIndex = side > 0 ? 0 : 1;
+  limb([[side * 0.065, -0.015, 0], [side * 0.16, -0.25, 0.012],
+    [side * 0.29, -0.49, -0.006], [side * 0.34, -0.72, -0.015]], [0.062, 0.054, 0.046, 0.03]).userData.limbIndex = side > 0 ? 2 : 3;
+  oval(jelly, [side * 0.28, 0.72, -0.018], [0.067, 0.066, 0.058]).userData.boneIndex = side > 0 ? 3 : 5;
+  oval(jelly, [side * 0.34, -0.72, -0.018], [0.070, 0.067, 0.058]).userData.boneIndex = side > 0 ? 7 : 9;
+}
+// The cheap blue molding has an embossed mask, not painted cartoon eyes.
+
+for (const side of [-1, 1]) {
+  const eye = oval(emboss, [side * 0.035, 0.514, 0.053], [0.022, 0.034, 0.006]);
+  eye.rotation.z = -side * 0.4;
+  eye.userData.boneIndex = 0;
+}
+
+  } else {
+    const points = TOYS[kind].rest;
+    if (kind === 'star') {
+      const star = mesh(createStarGeometry(), rubber, [0,0,0], figure);
+      star.castShadow = star.receiveShadow = true;
+    } else {
+      const core = oval(rubber, [0, -.08, 0], kind === 'frog' ? [.25, .31, .13] : [.16, .38, .08]);
+      core.userData.boneIndex = 0;
+      oval(rubber, points[2], kind === 'frog' ? [.25,.15,.11] : [.17,.18,.085]).userData.boneIndex = 0;
+      if (kind === 'gecko') {
+        limb([[0,.03,0],[.08,.36,0],[.20,.68,0],[.06,.88,0]], [.10,.07,.035,.008], rubber).userData.boneIndex = 0;
+      }
+      for (const [limbIndex,[a,b,c]] of [[1,3,5],[1,4,6],[0,7,9],[0,8,10]].entries()) {
+        limb([points[a], points[b], points[c]], kind === 'frog' ? [.11,.08,.045] : [.065,.047,.03], rubber).userData.limbIndex = limbIndex;
+        oval(rubber, points[c], [.115,.09,.065]).userData.boneIndex = 3 + limbIndex * 2;
+        for (let toe = -1; toe <= 1; toe++) {
+          oval(rubber, [points[c][0] + toe * .07, points[c][1] + (c < 7 ? -.07 : .07), .006], [.035,.042,.035]).userData.boneIndex = 3 + limbIndex * 2;
+        }
+      }
+    }
+    const faceY = kind === 'star' ? -.04 : points[2][1];
+    for (const side of [-1, 1]) {
+      const x = side * (kind === 'star' ? .075 : kind === 'frog' ? .14 : .085);
+      const eye = oval(eyeWhite, [x, faceY - .025, kind === 'star' ? .132 : .084], [.046,.052,.031]);
+      const dot = oval(pupil, [x, faceY - .030, kind === 'star' ? .159 : .111], [.021,.026,.009]);
+      eye.userData.boneIndex = dot.userData.boneIndex = 0;
+    }
+  }
+// Bake the rest pose once. No per-frame geometry allocation or detached rigid parts.
+blob.updateMatrixWorld(true);
+figure.traverse(part => {
+  if (!part.isMesh) return;
+  const source = part.geometry;
+  part.geometry = source.clone().applyMatrix4(part.matrixWorld);
+  if (source !== sphere) source.dispose();
+  part.position.set(0, 0, 0); part.quaternion.identity(); part.scale.set(1, 1, 1);
+  const rest = Float32Array.from(part.geometry.attributes.position.array);
+  const bindings = Array.from({ length: rest.length / 3 }, (_, i) => {
+    const p = [rest[i * 3], rest[i * 3 + 1], rest[i * 3 + 2]];
+    return part.userData.limbIndex === undefined
+      ? bindPoint(...p, part.userData.boneIndex ?? null, kind)
+      : bindLimbPoint(...p, part.userData.limbIndex, kind);
+  });
+  softParts.push({ part, rest, bindings });
+  part.frustumCulled = false;
+});
+figure.rotation.set(0, 0, 0);
+return { kind, figure, softParts, material: kind === 'spider' ? jelly : rubber,
+  slime: createSlime(kind), lastWallHits: 0, lastFloorHits: 0 };
+}
+const toys = Object.keys(TOYS).map(buildToy);
+let active = toys[0], slime = active.slime;
+let pointer = null, samples = [], lastPhase = '';
 let muted = true, audio = null;
-const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const bounds = { x: 4, top: 1.8 };
 const raycaster = new T.Raycaster(), ndc = new T.Vector2();
 const dragPlane = new T.Plane(new T.Vector3(0, 0, 1), -2.2);
 const intersection = new T.Vector3();
-const mouse = new T.Vector2();
 
+function home(index) {
+  const wide = bounds.x >= 3;
+  return wide ? [(index - 1.5) * 1.9, .35] : [(index % 2 ? 1 : -1) * Math.min(.95, bounds.x), index < 2 ? 1.1 : -.85];
+}
+function freshSlime(kind, index, adhesion = TOYS[kind].adhesion) {
+  const [x,y] = home(index);
+  const state = createSlime(kind, [x,y,.22]);
+  state.adhesion = adhesion;
+  return state;
+}
+function selectToy(toy) {
+  active = toy; slime = toy.slime; lastPhase = slime.phase;
+  sticky.value = Math.round(slime.adhesion * 100);
+  sticky.setAttribute('aria-label', `${TOYS[toy.kind].name}的黏糊度`);
+  document.querySelector('#sticky-value').textContent = `${sticky.value}%`;
+  document.querySelectorAll('[data-toy]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.toy === toy.kind)));
+  document.querySelectorAll('.swatch').forEach(button => {
+    const selected = button.dataset.color === `#${toy.material.color.getHexString()}`;
+    button.classList.toggle('selected', selected); button.setAttribute('aria-pressed', String(selected));
+  });
+}
 function resize() {
   const w = host.clientWidth, h = host.clientHeight, aspect = w / Math.max(h, 1);
-  const half = w < 621 ? 4.5 : 3.8;
+  const half = w < 621 ? 5 : 4.6;
   camera.left = -half * aspect; camera.right = half * aspect;
   camera.top = half; camera.bottom = -half;
-  const targetY = w < 621 && h < 700 ? -1.25 : -0.72;
+  const targetY = w < 621 && h < 700 ? -0.55 : -0.2;
   camera.position.set(0, targetY + 2.22, 14); camera.lookAt(0, targetY, 0);
   camera.updateProjectionMatrix(); camera.updateMatrixWorld();
-  bounds.x = Math.max(0.15, half * aspect - RADIUS * 1.75);
+  bounds.x = Math.max(0.15, half * aspect - RADIUS * 0.9);
+  bounds.top = half + targetY - RADIUS - 0.5;
   renderer.setSize(w, h);
+  toys.forEach((toy, i) => {
+    if (toy.slime.phase === 'ready') toy.slime = freshSlime(toy.kind, i, toy.slime.adhesion);
+  });
+  slime = active.slime;
 }
 new ResizeObserver(resize).observe(host); resize();
 
@@ -162,14 +297,16 @@ function cancelGrab() {
 canvas.addEventListener('pointerdown', event => {
   if (pointer !== null || !event.isPrimary || event.button !== 0) return;
   ray(event);
-  if (!raycaster.intersectObject(blob).length) return;
+  const hit = raycaster.intersectObject(blob, true)[0];
+  if (!hit) return;
+  let figure = hit.object;
+  while (!figure.userData.kind) figure = figure.parent;
+  selectToy(toys.find(toy => toy.kind === figure.userData.kind));
   event.preventDefault(); beginPlay(); samples = [];
   const point = track(event); grab(slime, point.x, point.y);
   pointer = event.pointerId; canvas.setPointerCapture(pointer); canvas.classList.add('grabbing');
 });
 canvas.addEventListener('pointermove', event => {
-  const box = canvas.getBoundingClientRect();
-  mouse.set((event.clientX - box.left) / box.width - 0.5, 0.5 - (event.clientY - box.top) / box.height);
   if (event.pointerId !== pointer) return;
   slime.grip = track(event);
 });
@@ -185,11 +322,15 @@ document.addEventListener('visibilitychange', () => { if (document.hidden) cance
 
 function demoThrow() {
   if (pointer !== null || throwButton.disabled) return;
-  beginPlay(); toss(slime, Math.sin(slime.throws * 2.4) * Math.min(bounds.x, 1.15), 0.8);
+  beginPlay();
+  tossTogether(toys.map(toy => toy.slime), bounds);
 }
 function reset() {
-  cancelGrab(); slime = createSlime(); slime.adhesion = Number(sticky.value) / 100;
-  lastWallHits = lastFloorHits = 0; lastPhase = '';
+  cancelGrab();
+  toys.forEach((toy, i) => {
+    toy.slime = freshSlime(toy.kind, i, toy.slime.adhesion); toy.lastWallHits = toy.lastFloorHits = 0;
+  });
+  slime = active.slime; lastPhase = '';
   document.body.classList.remove('playing');
 }
 throwButton.addEventListener('click', demoThrow);
@@ -202,14 +343,20 @@ addEventListener('keydown', event => {
 });
 sticky.addEventListener('input', () => {
   slime.adhesion = Number(sticky.value) / 100;
-  document.querySelector('#sticky-value').textContent = slime.adhesion < 0.33 ? '有点滑' : slime.adhesion > 0.75 ? '超级黏' : '刚刚好';
+  document.querySelector('#sticky-value').textContent = `${sticky.value}%`;
 });
 document.querySelectorAll('.swatch').forEach(button => button.addEventListener('click', () => {
-  jelly.color.set(button.dataset.color);
+  active.material.color.set(button.dataset.color);
   document.querySelectorAll('.swatch').forEach(other => {
     const selected = other === button;
     other.classList.toggle('selected', selected); other.setAttribute('aria-pressed', String(selected));
   });
+}));
+
+document.querySelectorAll('[data-toy]').forEach(button => button.addEventListener('click', () => {
+  if (pointer !== null) return;
+  selectToy(toys.find(toy => toy.kind === button.dataset.toy));
+  status.textContent = `选中了${TOYS[active.kind].name}，可以调黏糊度，也可以换颜色。`;
 }));
 
 soundButton.addEventListener('click', async () => {
@@ -243,38 +390,34 @@ function squelch(power = 1) {
 
 const messages = {
   ready: '这次不会被骂。', held: '对，就是这个手感。', flying: '接住——',
-  stuck: '啪叽。黏住了。', peeling: '撑不住了……', stretching: '拉——长——了。', falling: '掉啦。', rest: '捡起来，还能接着甩。',
+  stuck: '啪叽。黏住了。', peeling: '松开了……翻个跟头。',  falling: '掉啦。', rest: '捡起来，还能接着甩。',
 };
-loop((dt, time) => {
+loop(dt => {
   if (document.hidden) return;
-  step(slime, dt, bounds);
-  const visiblePhase = slime.phase === 'peeling' && slime.tether.y - slime.y > 1.3 ? 'stretching' : slime.phase;
-  if (visiblePhase !== lastPhase) {
-    status.textContent = messages[visiblePhase]; lastPhase = visiblePhase;
-    host.dataset.phase = visiblePhase;
+  const substeps = Math.ceil(dt * 120);
+  for (let i = 0; i < substeps; i++) {
+    for (const toy of toys) step(toy.slime, dt / substeps, bounds);
+    resolveToyContacts(toys.map(toy => toy.slime));
   }
-  if (slime.wallHits > lastWallHits) { squelch(); lastWallHits = slime.wallHits; }
-  if (slime.floorHits > lastFloorHits) { squelch(0.38); lastFloorHits = slime.floorHits; }
-  const vertices = slimeGeometry.attributes.position;
-  const idleTime = reducedMotion.matches && slime.phase === 'ready' ? 0 : time;
-  for (let i = 0; i < vertices.count; i++) {
-    const [x, y, z] = surfacePoint(slime, originals[i * 3], originals[i * 3 + 1], originals[i * 3 + 2], idleTime);
-    vertices.setXYZ(i, x, y, z);
+  for (const toy of toys) {
+    const { slime, softParts } = toy;
+    const visiblePhase = slime.phase;
+    if (toy === active && visiblePhase !== lastPhase) {
+      status.textContent = messages[visiblePhase]; lastPhase = visiblePhase;
+      host.dataset.phase = visiblePhase;
+    }
+    if (slime.wallHits > toy.lastWallHits) { squelch(); toy.lastWallHits = slime.wallHits; }
+    if (slime.floorHits > toy.lastFloorHits) { squelch(0.38); toy.lastFloorHits = slime.floorHits; }
+    for (const { part, rest, bindings } of softParts) {
+      const positions = part.geometry.attributes.position;
+      for (let i = 0; i < positions.count; i++) {
+        const p = deformPoint(slime, rest[i * 3], rest[i * 3 + 1], rest[i * 3 + 2], bindings[i]);
+        positions.setXYZ(i, ...p);
+      }
+      positions.needsUpdate = true;
+      part.geometry.computeVertexNormals();
+      part.geometry.computeBoundingSphere();
+    }
   }
-  vertices.needsUpdate = true;
-  slimeGeometry.computeVertexNormals(); slimeGeometry.computeBoundingSphere();
-  const blink = !reducedMotion.matches && time % 4.7 > 4.55;
-  for (const eye of eyes) {
-    const nx = eye.side * 0.30, ny = 0.06, nz = Math.sqrt(1 - nx * nx - ny * ny);
-    const p = surfacePoint(slime, nx, ny, nz, idleTime);
-    eye.group.position.set(p[0], p[1], p[2] + 0.016);
-    const squint = blink ? 0.07 : slime.hit > 0.1 ? 0.24 : 1;
-    eye.group.scale.set(1, squint, 1);
-    eye.pupil.position.x = mouse.x * 0.026;
-    eye.pupil.position.y = slime.phase === 'peeling' ? -0.027 : mouse.y * 0.024;
-  }
-  const p = surfacePoint(slime, 0, -0.24, Math.sqrt(1 - 0.24 ** 2), idleTime);
-  mouth.position.set(p[0], p[1], p[2] + 0.013);
-  mouth.scale.set(1, slime.phase === 'peeling' ? 1.7 : 0.6, 1);
   renderer.render(scene, camera);
 });
