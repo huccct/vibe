@@ -1,0 +1,15 @@
+{
+  "accent": "#dbed94",
+  "added": "2026-10-20",
+  "models": [],
+  "zh": {
+    "title": "拍点 · 练鼓节拍器",
+    "description": "给练鼓的自己。调速度、敲击测速，设置每拍重音和节奏细分，跟着稳定的底拍慢慢练。",
+    "tags": ["音乐", "架子鼓", "节拍器"]
+  },
+  "en": {
+    "title": "Pocket Tempo · Drum Metronome",
+    "description": "A metronome for your drum practice. Tap a tempo, set beat accents and subdivisions, and settle into a steady pulse.",
+    "tags": ["music", "drums", "metronome"]
+  }
+}
