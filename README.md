@@ -25,6 +25,7 @@ The homepage collection, newest first. Names below link to source folders; visit
 <!-- ideas:start -->
 | Idea | Description | Made with |
 | --- | --- | --- |
+| [Code Vision](toys/code-vision/) | Step into a corridor of flowing green characters. Look around and hold Space to switch between reality and the Matrix. | To be added |
 | [Pocket Tempo · Drum Metronome](toys/metronome/) | A metronome for your drum practice. Tap a tempo, set beat accents and subdivisions, and settle into a steady pulse. | To be added |
 | [Splat!](toys/wall-slime/) | A box of nostalgic sticky toys: Spider-Man, a gecko, a soft star and a frog. Fling all four onto one wall, adjust their stickiness, and see who holds on longest. | gpt-6-astra |
 | [Digital Demolition](toys/demolition/) | Turn a public website into a destructible arcade level. Run, fly, shoot and throw grenades, then rewind the damage. | gpt-6-astra |

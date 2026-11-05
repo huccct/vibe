@@ -103,6 +103,29 @@
     }
   },
   {
+    "slug": "code-vision",
+    "accent": "#64ed91",
+    "added": "2026-11-05",
+    "zh": {
+      "title": "代码视界",
+      "description": "走进绿色字符构成的走廊。鼠标环顾，按住空格，在现实与矩阵视界之间切换。",
+      "tags": [
+        "黑客帝国",
+        "3D",
+        "交互"
+      ]
+    },
+    "en": {
+      "title": "Code Vision",
+      "description": "Step into a corridor of flowing green characters. Look around and hold Space to switch between reality and the Matrix.",
+      "tags": [
+        "Matrix",
+        "3D",
+        "interactive"
+      ]
+    }
+  },
+  {
     "slug": "demolition",
     "models": [
       "gpt-6-astra"

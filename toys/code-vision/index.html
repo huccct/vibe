@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="走进绿色字符构成的走廊。鼠标环顾，切换现实与代码视界。">
+  <title>代码视界 · vibe</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <article>
+    <canvas aria-label="绿色字符构成的走廊与三名特工，移动鼠标环顾，按住空格查看现实"></canvas>
+    <a class="back" href="../../">← vibe 合集</a>
+    <footer>
+      <div>
+        <small>MATRIX STUDY · 非官方交互习作</small>
+        <h1>代码视界</h1>
+        <p id="caption">鼠标环顾 · 按住空格看现实 · 触屏可点按钮切换</p>
+      </div>
+      <nav aria-label="播放与视界控制">
+        <button id="pause" type="button">暂停</button>
+        <button id="replay" type="button">重播 ↻</button>
+      </nav>
+    </footer>
+    <p id="error" role="status"></p>
+  </article>
+  <script type="module">
+    import { show } from './vision.js';
+    show();
+  </script>
+</body>
+</html>
